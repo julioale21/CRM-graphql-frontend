@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -8,7 +9,7 @@ const client = new ApolloClient({
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
-  }
+  },
 });
 
 class App extends Component {
