@@ -3,7 +3,7 @@ import React from "react";
 const EditCustomer = () => {
   return (
     <div>
-      <h1>Edit Customer</h1>
+      <h2 className="text-center uppercase font-bold text-2xl">Edit Customer</h2>
     </div>
   );
 };

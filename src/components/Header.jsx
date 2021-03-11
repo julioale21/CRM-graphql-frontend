@@ -9,7 +9,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-3 w-full z-10 pin-t">
+    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-3 w-full z-10 pin-t mb-4">
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <a
           className="text-white no-underline hover:text-white hover:no-underline"

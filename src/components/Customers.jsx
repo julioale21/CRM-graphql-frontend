@@ -12,7 +12,7 @@ const Customers = () => (
 
       return (
         <Fragment>
-          <h2 className="text-center text-2xl font-bold uppercase mt-4">
+          <h2 className="text-center text-2xl font-bold uppercase">
             Customers List
           </h2>
           <ul className="mt-4">
