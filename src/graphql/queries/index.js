@@ -1,7 +1,7 @@
-
 import gql from "graphql-tag";
 
-export const GET_ALL_CUSTOMERS_QUERY = gql´{
+export const GET_ALL_CUSTOMERS_QUERY = gql`
+  {
     getCustomers {
       id
       name
@@ -13,4 +13,4 @@ export const GET_ALL_CUSTOMERS_QUERY = gql´{
       }
     }
   }
-´;
+`;

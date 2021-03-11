@@ -8,19 +8,19 @@ const Header = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-3 fixed w-full z-10 pin-t">
+    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-3 w-full z-10 pin-t">
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <a
           className="text-white no-underline hover:text-white hover:no-underline"
           href="#"
         >
           <span className="text-2xl pl-2">
-            <i className="em em-grinning"></i>CRM Customers
+            <i className="em em-grinning"></i>CRM
           </span>
         </a>
       </div>
 
-      <div className="block lg:hidden">
+      <div className="block sm:hidden">
         <button
           onClick={handleNavCollapse}
           id="nav-toggle"
@@ -38,12 +38,12 @@ const Header = () => {
       </div>
 
       <div
-        className={`w-full flex-grow lg:flex items-center lg:w-auto lg:block pt-6 lg:pt-0 ${
+        className={`w-full flex-grow sm:flex items-center sm:w-auto sm:block pt-6 sm:pt-0 ${
           isNavCollapsed ? "flex" : "hidden"
         }`}
         id="nav-content"
       >
-        <ul className="list-reset lg:flex justify-end flex-1 items-center">
+        <ul className="list-reset sm:flex justify-end flex-1 items-center">
           <li className="mr-3">
             <a
               className="inline-block py-2 px-4 text-white no-underline hover:text-blue-200"
