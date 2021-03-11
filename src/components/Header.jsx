@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
@@ -45,12 +46,12 @@ const Header = () => {
       >
         <ul className="list-reset sm:flex justify-end flex-1 items-center">
           <li className="mr-3">
-            <a
+            <Link
+              to="/customer/new"
               className="inline-block py-2 px-4 text-white no-underline hover:text-blue-200"
-              href="#"
             >
               New Customer
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

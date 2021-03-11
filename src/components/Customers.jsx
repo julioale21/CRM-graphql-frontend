@@ -2,6 +2,7 @@
 import React, { Fragment } from "react";
 import { Query } from "react-apollo";
 import { GET_ALL_CUSTOMERS_QUERY } from "../graphql/queries";
+import { Link } from "react-router-dom";
 
 const Customers = () => (
   <Query query={GET_ALL_CUSTOMERS_QUERY}>
@@ -25,9 +26,12 @@ const Customers = () => (
                     {customer.name} {customer.lastName} - {customer.company}
                   </div>
                   <div className="col-span-1 flex justify-end">
-                    <a href="" className="btn bg-green-400 hover:bg-green-500">
+                    <Link
+                      to={`/customer/edit/:${customer.id}`}
+                      className="btn bg-green-400 hover:bg-green-500"
+                    >
                       Edit
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </li>
