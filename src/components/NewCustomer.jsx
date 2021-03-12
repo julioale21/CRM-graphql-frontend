@@ -12,12 +12,22 @@ class NewCustomer extends Component {
       email: "",
       type: "BASIC",
     },
+    error: false,
   };
 
   render() {
+    const { error } = this.state;
+    let response = error ? (
+      <p className="bg-red-200 text-center text-white">All field are required</p>
+    ) : (
+      ""
+    );
     return (
       <Fragment>
         <h2 className="text-center uppercase font-bold text-2xl">New Customer</h2>
+
+        {response}
+
         <div className="sm:grid sm:grid-cols-5">
           <Mutation mutation={CREATE_CUSTOMER}>
             {(createCustomer) => (
@@ -33,6 +43,24 @@ class NewCustomer extends Component {
                     email,
                     type,
                   } = this.state.customer;
+
+                  if (
+                    name === "" ||
+                    lastName === "" ||
+                    age === "" ||
+                    company === "" ||
+                    email === "" ||
+                    type === ""
+                  ) {
+                    this.setState({
+                      error: true,
+                    });
+                    return;
+                  }
+
+                  this.setState({
+                    error: false,
+                  });
 
                   const input = {
                     name,
@@ -55,7 +83,6 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Name"
-                    required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={(e) => {
                       this.setState({
@@ -75,7 +102,6 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Last Name"
-                    required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={(e) => {
                       this.setState({
@@ -95,7 +121,6 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Company"
-                    required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={(e) => {
                       this.setState({
@@ -115,7 +140,6 @@ class NewCustomer extends Component {
                   <input
                     type="email"
                     placeholder="Email"
-                    required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={(e) => {
                       this.setState({
@@ -135,7 +159,6 @@ class NewCustomer extends Component {
                   <input
                     type="Number"
                     placeholder="Age"
-                    required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={(e) => {
                       this.setState({
