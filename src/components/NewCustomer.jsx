@@ -13,6 +13,19 @@ class NewCustomer extends Component {
       type: "BASIC",
     },
     error: false,
+    emails: [],
+  };
+
+  addEmail = () => {
+    this.setState({
+      emails: this.state.emails.concat([{ email: "" }]),
+    });
+  };
+
+  deleteEmail = (i) => () => {
+    this.setState({
+      emails: this.state.emails.filter((email, index) => i !== index),
+    });
   };
 
   render() {
@@ -25,8 +38,6 @@ class NewCustomer extends Component {
     return (
       <Fragment>
         <h2 className="text-center uppercase font-bold text-2xl">New Customer</h2>
-
-        {response}
 
         <div className="sm:grid sm:grid-cols-5">
           <Mutation
@@ -79,10 +90,8 @@ class NewCustomer extends Component {
                   });
                 }}
               >
+                <div className="col-span-2 mb-4">{response}</div>
                 <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Name
-                  </label>
                   <input
                     type="text"
                     placeholder="Name"
@@ -99,9 +108,6 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Last Name
-                  </label>
                   <input
                     type="text"
                     placeholder="Last Name"
@@ -117,10 +123,7 @@ class NewCustomer extends Component {
                   />
                 </div>
 
-                <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Company
-                  </label>
+                <div className="mb-2 sm:col-span-2">
                   <input
                     type="text"
                     placeholder="Company"
@@ -136,29 +139,35 @@ class NewCustomer extends Component {
                   />
                 </div>
 
-                <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                    onChange={(e) => {
-                      this.setState({
-                        customer: {
-                          ...this.state.customer,
-                          email: e.target.value,
-                        },
-                      });
-                    }}
-                  />
+                {this.state.emails.map((input, index) => (
+                  <div key={index} className="mb-2 col-span-2">
+                    <span className="flex">
+                      <input
+                        type="email"
+                        placeholder={`Email: ${index + 1}`}
+                        className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                      />
+                      <button
+                        onClick={this.deleteEmail(index)}
+                        className="btn bg-red-600 hover:bg-red-700 text-xs float-right"
+                      >
+                        Delete
+                      </button>
+                    </span>
+                  </div>
+                ))}
+
+                <div className="mb-2 flex justify-center col-span-2">
+                  <button
+                    onClick={this.addEmail}
+                    type="button"
+                    className="btn bg-yellow-500 text-sm"
+                  >
+                    + Add Email
+                  </button>
                 </div>
 
                 <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Age
-                  </label>
                   <input
                     type="Number"
                     placeholder="Age"
@@ -175,9 +184,6 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    Customer Type
-                  </label>
                   <select
                     onChange={(e) => {
                       this.setState({
