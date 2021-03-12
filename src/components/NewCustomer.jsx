@@ -29,7 +29,10 @@ class NewCustomer extends Component {
         {response}
 
         <div className="sm:grid sm:grid-cols-5">
-          <Mutation mutation={CREATE_CUSTOMER}>
+          <Mutation
+            mutation={CREATE_CUSTOMER}
+            onCompleted={() => this.props.history.push("/")}
+          >
             {(createCustomer) => (
               <form
                 className="sm:col-span-3 sm:col-start-2 m-3 sm:grid sm:grid-cols-2 sm:gap-2"

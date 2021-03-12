@@ -5,8 +5,8 @@ import { GET_ALL_CUSTOMERS_QUERY } from "../graphql/queries";
 import { Link } from "react-router-dom";
 
 const Customers = () => (
-  <Query query={GET_ALL_CUSTOMERS_QUERY}>
-    {({ loading, error, data }) => {
+  <Query query={GET_ALL_CUSTOMERS_QUERY} pollInterval={1000}>
+    {({ loading, error, data, startPolling, stopPolling }) => {
       if (loading) return "Cargando...";
       if (error) return `Error: ${error.message}`;
 
