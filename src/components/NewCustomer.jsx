@@ -9,14 +9,13 @@ class NewCustomer extends Component {
       lastName: "",
       age: "",
       company: "",
-      email: "",
       type: "BASIC",
     },
     error: false,
     emails: [],
   };
 
-  addEmail = () => {
+  addInputEmail = () => {
     this.setState({
       emails: this.state.emails.concat([{ email: "" }]),
     });
@@ -25,6 +24,19 @@ class NewCustomer extends Component {
   deleteEmail = (i) => () => {
     this.setState({
       emails: this.state.emails.filter((email, index) => i !== index),
+    });
+  };
+
+  addEmail = (i) => (e) => {
+    const newEmails = this.state.emails.map((email, index) => {
+      if (i !== index) return email;
+      return {
+        ...email,
+        email: e.target.value,
+      };
+    });
+    this.setState({
+      emails: newEmails,
     });
   };
 
@@ -49,21 +61,14 @@ class NewCustomer extends Component {
                 className="sm:col-span-3 sm:col-start-2 m-3 sm:grid sm:grid-cols-2 sm:gap-2"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const {
-                    name,
-                    lastName,
-                    age,
-                    company,
-                    email,
-                    type,
-                  } = this.state.customer;
+                  const { name, lastName, age, company, type } = this.state.customer;
+                  const { emails } = this.state;
 
                   if (
                     name === "" ||
                     lastName === "" ||
                     age === "" ||
                     company === "" ||
-                    email === "" ||
                     type === ""
                   ) {
                     this.setState({
@@ -81,7 +86,7 @@ class NewCustomer extends Component {
                     lastName,
                     age: Number(age),
                     company,
-                    email,
+                    emails,
                     type,
                   };
 
@@ -143,6 +148,7 @@ class NewCustomer extends Component {
                   <div key={index} className="mb-2 col-span-2">
                     <span className="flex">
                       <input
+                        onChange={this.addEmail(index)}
                         type="email"
                         placeholder={`Email: ${index + 1}`}
                         className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
@@ -159,7 +165,7 @@ class NewCustomer extends Component {
 
                 <div className="mb-2 flex justify-center col-span-2">
                   <button
-                    onClick={this.addEmail}
+                    onClick={this.addInputEmail}
                     type="button"
                     className="btn bg-yellow-500 text-sm"
                   >
@@ -200,8 +206,10 @@ class NewCustomer extends Component {
                     <option value="BASIC">BASIC</option>
                   </select>
                 </div>
-                <div className="sm:col-start-2">
-                  <button className="btn btn-blue sm:float-right">Save</button>
+                <div className="flex justify-center sm:justify-end col-span-2 sm:col-span-1 sm:col-start-2 mt-4">
+                  <button className="btn btn-blue sm:float-right uppercase">
+                    Add Customer
+                  </button>
                 </div>
               </form>
             )}

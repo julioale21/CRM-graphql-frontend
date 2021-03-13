@@ -8,7 +8,9 @@ export const GET_ALL_CUSTOMERS_QUERY = gql`
       lastName
       age
       company
-      email
+      emails {
+        email
+      }
     }
   }
 `;

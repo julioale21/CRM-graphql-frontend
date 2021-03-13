@@ -8,7 +8,9 @@ export const CREATE_CUSTOMER = gql`
       lastName
       age
       company
-      email
+      emails {
+        email
+      }
     }
   }
 `;
