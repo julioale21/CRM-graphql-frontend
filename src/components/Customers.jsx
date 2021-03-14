@@ -27,7 +27,7 @@ const Customers = () => (
                   </div>
                   <div className="col-span-1 flex justify-end">
                     <Link
-                      to={`/customer/edit/:${customer.id}`}
+                      to={`/customer/edit/${customer.id}`}
                       className="btn bg-green-400 hover:bg-green-500"
                     >
                       Edit

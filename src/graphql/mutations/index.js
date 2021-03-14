@@ -14,3 +14,18 @@ export const CREATE_CUSTOMER = gql`
     }
   }
 `;
+
+export const UPDATE_CUSTOMER = gql`
+  mutation($input: CustomerInput) {
+    updateCustomer(input: $input) {
+      name
+      lastName
+      age
+      company
+      emails {
+        email
+      }
+      type
+    }
+  }
+`;
