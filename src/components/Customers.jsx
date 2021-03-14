@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { Fragment } from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { GET_ALL_CUSTOMERS_QUERY } from "../graphql/queries";
+import { DELETE_CUSTOMER } from "../graphql/mutations";
 import { Link } from "react-router-dom";
 
 const Customers = () => (
@@ -22,13 +23,36 @@ const Customers = () => (
                 className="border list-none rounded-sm px-3 py-3"
               >
                 <div className="grid grid-cols-3">
-                  <div className="col-span-2">
-                    {customer.name} {customer.lastName} - {customer.company}
+                  <div className="col-span-2 text-sm sm:text-lg">
+                    {customer.name} {customer.lastName}
                   </div>
                   <div className="col-span-1 flex justify-end">
+                    <Mutation mutation={DELETE_CUSTOMER}>
+                      {(deleteCustomer) => (
+                        <button
+                          type="button"
+                          className="btn bg-red-500 hover:bg-red-700 text-tiny mr-2 sm:text-lg"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure that you want to delete this customer ?"
+                              )
+                            ) {
+                              deleteCustomer({
+                                variables: {
+                                  id: customer.id,
+                                },
+                              });
+                            }
+                          }}
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </Mutation>
                     <Link
                       to={`/customer/edit/${customer.id}`}
-                      className="btn bg-green-400 hover:bg-green-500"
+                      className="btn bg-green-400 hover:bg-green-500 text-tiny sm:text-lg"
                     >
                       Edit
                     </Link>
