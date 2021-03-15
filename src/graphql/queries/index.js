@@ -12,6 +12,7 @@ export const GET_ALL_CUSTOMERS_QUERY = gql`
         email
       }
     }
+    totalCustomers
   }
 `;
 
