@@ -16,6 +16,14 @@ class Customers extends Component {
 
   limit = 10;
 
+  previousPage = () => {
+    console.log("previous... ");
+  };
+
+  nextPage = () => {
+    console.log("next... ");
+  };
+
   render() {
     return (
       <Query query={GET_ALL_CUSTOMERS_QUERY} pollInterval={1000}>
@@ -78,6 +86,8 @@ class Customers extends Component {
                 page={this.state.paginate.page}
                 totalCustomers={data.totalCustomers}
                 limit={this.limit}
+                nextPage={this.nextPage}
+                previousPage={this.previousPage}
               />
             </Fragment>
           );
