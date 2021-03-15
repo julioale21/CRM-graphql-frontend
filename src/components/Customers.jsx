@@ -14,6 +14,8 @@ class Customers extends Component {
     },
   };
 
+  limit = 10;
+
   render() {
     return (
       <Query query={GET_ALL_CUSTOMERS_QUERY} pollInterval={1000}>
@@ -75,6 +77,7 @@ class Customers extends Component {
               <Pager
                 page={this.state.paginate.page}
                 totalCustomers={data.totalCustomers}
+                limit={this.limit}
               />
             </Fragment>
           );
