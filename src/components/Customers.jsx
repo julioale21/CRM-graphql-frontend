@@ -12,21 +12,37 @@ class Customers extends Component {
       offset: 0,
       page: 1,
     },
+    limit: 10,
   };
 
-  limit = 10;
-
   previousPage = () => {
-    console.log("previous... ");
+    this.setState({
+      paginate: {
+        offset: this.state.paginate.offset - this.state.limit,
+        page: this.state.paginate.page - 1,
+      },
+    });
   };
 
   nextPage = () => {
-    console.log("next... ");
+    this.setState({
+      paginate: {
+        offset: this.state.paginate.offset + this.state.limit,
+        page: this.state.paginate.page + 1,
+      },
+    });
   };
 
   render() {
     return (
-      <Query query={GET_ALL_CUSTOMERS_QUERY} pollInterval={1000}>
+      <Query
+        query={GET_ALL_CUSTOMERS_QUERY}
+        pollInterval={1000}
+        variables={{
+          limit: this.state.limit,
+          offset: this.state.paginate.offset,
+        }}
+      >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return "Cargando...";
           if (error) return `Error: ${error.message}`;
@@ -85,7 +101,7 @@ class Customers extends Component {
               <Pager
                 page={this.state.paginate.page}
                 totalCustomers={data.totalCustomers}
-                limit={this.limit}
+                limit={this.state.limit}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
               />

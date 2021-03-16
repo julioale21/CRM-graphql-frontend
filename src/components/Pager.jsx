@@ -15,7 +15,7 @@ class Pager extends Component {
         <button
           onClick={this.props.previousPage}
           type="button"
-          className="btn text-white flex justify-center items-center bg-green-400 hover:bg-green-500 mr-2"
+          className="btn text-white flex justify-center items-center bg-green-300 hover:bg-green-500 mr-2 w-20"
         >
           &laquo; Previous
         </button>
@@ -27,7 +27,7 @@ class Pager extends Component {
         <button
           onClick={this.props.nextPage}
           type="button"
-          className="btn text-white flex justify-center items-center bg-green-400 hover:bg-green-500 mr-2"
+          className="btn text-white flex justify-center items-center bg-green-300 hover:bg-green-500 mr-2 w-20"
         >
           &raquo; Next
         </button>
