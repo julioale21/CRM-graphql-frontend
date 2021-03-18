@@ -97,6 +97,7 @@ class NewCustomer extends Component {
               >
                 <div className="col-span-2 mb-4">{response}</div>
                 <div className="mb-2">
+                  <label>Name:</label>
                   <input
                     type="text"
                     placeholder="Name"
@@ -113,6 +114,7 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2">
+                  <label>Last Name:</label>
                   <input
                     type="text"
                     placeholder="Last Name"
@@ -129,6 +131,7 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2 sm:col-span-2">
+                  <label>Company:</label>
                   <input
                     type="text"
                     placeholder="Company"
@@ -147,6 +150,7 @@ class NewCustomer extends Component {
                 {this.state.emails.map((input, index) => (
                   <div key={index} className="mb-2 col-span-2">
                     <span className="flex">
+                      <label>Email:</label>
                       <input
                         onChange={this.addEmail(index)}
                         type="email"
@@ -174,6 +178,7 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2">
+                  <label>Age:</label>
                   <input
                     type="Number"
                     placeholder="Age"
@@ -190,6 +195,7 @@ class NewCustomer extends Component {
                 </div>
 
                 <div className="mb-2">
+                  <label>Type of customer:</label>
                   <select
                     onChange={(e) => {
                       this.setState({
@@ -207,7 +213,7 @@ class NewCustomer extends Component {
                   </select>
                 </div>
                 <div className="flex justify-center sm:justify-end col-span-2 sm:col-span-1 sm:col-start-2 mt-4">
-                  <button className="btn btn-blue sm:float-right uppercase">
+                  <button className="btn bg-green-400 hover:bg-green-500 sm:float-right uppercase">
                     Add Customer
                   </button>
                 </div>
