@@ -31,3 +31,14 @@ export const GET_CUSTOMER_QUERY = gql`
     }
   }
 `;
+
+export const GET_ALL_PRODUCTS_QUERY = gql`
+  query($limit: Int, $offset: Int) {
+    getProducts(limit: $limit, offset: $offset) {
+      id
+      name
+      price
+      stock
+    }
+  }
+`;
