@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
-import {  } from "../../graphql/queries";
+import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
 class ProductsList extends Component {
   state = {};
 
