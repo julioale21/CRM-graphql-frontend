@@ -1,7 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-const ProductsList = () => {
-  return <div></div>;
-};
+class ProductsList extends Component {
+  state = {};
+
+  render() {
+    return <div>Products List</div>;
+  }
+}
 
 export default ProductsList;
