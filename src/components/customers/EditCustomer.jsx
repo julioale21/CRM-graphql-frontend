@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component, Fragment } from "react";
-import { GET_CUSTOMER_QUERY } from "../graphql/queries";
+import { GET_CUSTOMER_QUERY } from "../../graphql/queries";
 import { Query } from "react-apollo";
 import CustomerForm from "./CustomerForm";
 class EditCustomer extends Component {

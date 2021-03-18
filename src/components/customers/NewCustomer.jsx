@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { Fragment, Component } from "react";
-import { CREATE_CUSTOMER } from "../graphql/mutations";
+import { CREATE_CUSTOMER } from "../../graphql/mutations";
 import { Mutation } from "react-apollo";
 class NewCustomer extends Component {
   state = {

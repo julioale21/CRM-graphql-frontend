@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import { UPDATE_CUSTOMER } from "../graphql/mutations";
+import { UPDATE_CUSTOMER } from "../../graphql/mutations";
 import { withRouter } from "react-router-dom";
 
 class CustomerForm extends Component {

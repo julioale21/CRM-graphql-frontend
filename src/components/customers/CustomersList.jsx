@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import React, { Component, Fragment } from "react";
 import { Query, Mutation } from "react-apollo";
-import { GET_ALL_CUSTOMERS_QUERY } from "../graphql/queries";
-import { DELETE_CUSTOMER } from "../graphql/mutations";
+import { GET_ALL_CUSTOMERS_QUERY } from "../../graphql/queries";
+import { DELETE_CUSTOMER } from "../../graphql/mutations";
 import { Link } from "react-router-dom";
-import Pager from "./Pager";
+import Pager from "../Pager";
 
 class Customers extends Component {
   state = {

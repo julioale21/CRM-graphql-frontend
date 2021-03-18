@@ -9,11 +9,11 @@ const Header = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-3 w-full z-10 pin-t mb-4">
+    <nav className="flex items-center justify-between flex-wrap bg-black p-3 w-full z-10 pin-t mb-4">
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <a
           className="text-white no-underline hover:text-white hover:no-underline"
-          href="#"
+          href="/"
         >
           <span className="text-2xl pl-2">
             <i className="em em-grinning"></i>CRM
@@ -25,7 +25,7 @@ const Header = () => {
         <button
           onClick={handleNavCollapse}
           id="nav-toggle"
-          className="flex items-center px-3 py-2 border rounded text-grey border-grey-dark hover:text-white hover:border-white"
+          className="flex text-white items-center px-3 py-2 border rounded text-grey border-grey-dark hover:text-green-200 hover:border-white"
         >
           <svg
             className="fill-current h-3 w-3"
@@ -44,13 +44,19 @@ const Header = () => {
         }`}
         id="nav-content"
       >
-        <ul className="list-reset sm:flex justify-end flex-1 items-center">
+        <ul className="list-reset flex flex-col sm:flex-row justify-end flex-1 items-center">
           <li className="mr-3">
             <Link
-              to="/customer/new"
-              className="inline-block py-2 px-4 text-white no-underline hover:text-blue-200"
+              to="/customers/new"
+              className="btn bg-transparent sm:bg-green-400 block sm:inline-block py-2 px-4 text-white no-underline hover:text-blue-200 mr-2 mb-2 w-40 sm:w-auto text-center"
             >
               New Customer
+            </Link>
+            <Link
+              to="/products/new"
+              className="btn bg-transparent sm:bg-green-400 block sm:inline-block py-2 px-4 text-white no-underline hover:text-blue-200 w-40 sm:w-auto text-center"
+            >
+              New Product
             </Link>
           </li>
         </ul>
