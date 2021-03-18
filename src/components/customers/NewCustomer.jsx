@@ -100,7 +100,7 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Name"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="form-control"
                     onChange={(e) => {
                       this.setState({
                         customer: {
@@ -116,7 +116,7 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Last Name"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="form-control"
                     onChange={(e) => {
                       this.setState({
                         customer: {
@@ -132,7 +132,7 @@ class NewCustomer extends Component {
                   <input
                     type="text"
                     placeholder="Company"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="form-control"
                     onChange={(e) => {
                       this.setState({
                         customer: {
@@ -151,7 +151,7 @@ class NewCustomer extends Component {
                         onChange={this.addEmail(index)}
                         type="email"
                         placeholder={`Email: ${index + 1}`}
-                        className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                        className="form-control"
                       />
                       <button
                         onClick={this.deleteEmail(index)}
@@ -177,7 +177,7 @@ class NewCustomer extends Component {
                   <input
                     type="Number"
                     placeholder="Age"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="form-control"
                     onChange={(e) => {
                       this.setState({
                         customer: {
@@ -199,7 +199,7 @@ class NewCustomer extends Component {
                         },
                       });
                     }}
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="form-control"
                   >
                     <option value="">Select a type...</option>
                     <option value="PREMIUM">PREMIUM</option>
