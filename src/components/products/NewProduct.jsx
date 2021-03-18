@@ -14,6 +14,12 @@ class NewProduct extends Component {
     });
   };
 
+  validateForm = () => {
+    const { name, price, stock } = this.state;
+    const invalid = !name || !price || !stock;
+    return invalid;
+  };
+
   render() {
     return (
       <Fragment>
@@ -57,7 +63,9 @@ class NewProduct extends Component {
             </div>
             <button
               type="button"
-              className="btn bg-green-400 hover:bg-green-500 sm:float-right uppercase float-right mt-4"
+              className={`${
+                this.validateForm() ? "btn-disabled" : ""
+              } btn bg-green-400 hover:bg-green-500 sm:float-right uppercase float-right mt-4`}
             >
               Crear Producto
             </button>
