@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
 import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
+import { Link } from "react-router-dom";
 class ProductsList extends Component {
   state = {};
 
@@ -16,7 +17,7 @@ class ProductsList extends Component {
             if (loading) return "Cargando ...";
             if (error) return `Error: ${error.message}`;
             return (
-              <table className="min-w-max w-full table-auto">
+              <table className="w-full table-auto">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-lg leading-normal">
                     <th className="w-2/6 py-3 px-6 text-center">Name</th>
@@ -26,17 +27,36 @@ class ProductsList extends Component {
                     <th className="w-1/6 py-3 px-6 text-center">Edit</th>
                   </tr>
                 </thead>
-                <tbody class="text-gray-600 text-sm font-light">
+                <tbody className="text-gray-600 text-sm font-light">
                   {data.getProducts.map((product) => (
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                      <td class="py-3 px-6 text-center whitespace-nowrap">
+                    <tr
+                      key={product.id}
+                      className="border-b border-gray-200 hover:bg-gray-100"
+                    >
+                      <td className="py-3 px-6 text-center whitespace-nowrap">
                         {product.name}
                       </td>
-                      <td class="py-3 px-6 text-center whitespace-nowrap">
+                      <td className="py-3 px-6 text-center whitespace-nowrap">
                         {product.price}
                       </td>
-                      <td class="py-3 px-6 text-center whitespace-nowrap">
+                      <td className="py-3 px-6 text-center whitespace-nowrap">
                         {product.stock}
+                      </td>
+                      <td className="py-3 px-6 text-center whitespace-nowrap">
+                        <button
+                          type="button"
+                          className="btn bg-red-500 text-white font-bold"
+                        >
+                          &times; Delete
+                        </button>
+                      </td>
+                      <td className="py-3 px-6 text-center whitespace-nowrap">
+                        <Link
+                          to={`/products/edit/${product.id}`}
+                          className="btn block bg-green-300 text-white font-bold w-16"
+                        >
+                          Edit
+                        </Link>
                       </td>
                     </tr>
                   ))}
