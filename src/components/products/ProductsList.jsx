@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Query } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
+import { DELETE_PRODUCT } from "../../graphql/mutations";
 import { Link } from "react-router-dom";
 class ProductsList extends Component {
   state = {};
@@ -43,17 +44,32 @@ class ProductsList extends Component {
                         {product.stock}
                       </td>
                       <td className="py-3 px-6 text-center whitespace-nowrap">
-                        <button
-                          type="button"
-                          className="btn bg-red-500 text-white font-bold"
-                        >
-                          &times; Delete
-                        </button>
+                        <Mutation mutation={DELETE_PRODUCT}>
+                          {(deleteProduct) => (
+                            <button
+                              onClick={() => {
+                                if (
+                                  window.confirm(
+                                    "Are you sure that you want to remove the product?."
+                                  )
+                                ) {
+                                  deleteProduct({
+                                    variables: { id: product.id },
+                                  });
+                                }
+                              }}
+                              type="button"
+                              className="btn inline-block bg-red-500 text-white font-bold hover:bg-red-700 text-tiny mr-2 sm:text-sm"
+                            >
+                              &times; Delete
+                            </button>
+                          )}
+                        </Mutation>
                       </td>
                       <td className="py-3 px-6 text-center whitespace-nowrap">
                         <Link
                           to={`/products/edit/${product.id}`}
-                          className="btn block bg-green-300 text-white font-bold w-16"
+                          className="btn inline-block bg-green-400 text-white font-bold hover:bg-green-500 text-tiny sm:text-sm w-20"
                         >
                           Edit
                         </Link>
