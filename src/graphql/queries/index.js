@@ -40,5 +40,17 @@ export const GET_ALL_PRODUCTS_QUERY = gql`
       price
       stock
     }
+    totalProducts
+  }
+`;
+
+export const GET_PRODUCT_QUERY = gql`
+  query($id: ID!) {
+    getProduct(id: $id) {
+      id
+      name
+      price
+      stock
+    }
   }
 `;

@@ -7,18 +7,18 @@ import { Link } from "react-router-dom";
 import Pager from "../Pager";
 
 class Customers extends Component {
+  limit = 10;
   state = {
     paginate: {
       offset: 0,
       page: 1,
     },
-    limit: 10,
   };
 
   previousPage = () => {
     this.setState({
       paginate: {
-        offset: this.state.paginate.offset - this.state.limit,
+        offset: this.state.paginate.offset - this.limit,
         page: this.state.paginate.page - 1,
       },
     });
@@ -27,7 +27,7 @@ class Customers extends Component {
   nextPage = () => {
     this.setState({
       paginate: {
-        offset: this.state.paginate.offset + this.state.limit,
+        offset: this.state.paginate.offset + this.limit,
         page: this.state.paginate.page + 1,
       },
     });
@@ -39,7 +39,7 @@ class Customers extends Component {
         query={GET_ALL_CUSTOMERS_QUERY}
         pollInterval={1000}
         variables={{
-          limit: this.state.limit,
+          limit: this.limit,
           offset: this.state.paginate.offset,
         }}
       >
@@ -100,8 +100,8 @@ class Customers extends Component {
 
               <Pager
                 page={this.state.paginate.page}
-                totalCustomers={data.totalCustomers}
-                limit={this.state.limit}
+                total={data.totalCustomers}
+                limit={this.limit}
                 nextPage={this.nextPage}
                 previousPage={this.previousPage}
               />
