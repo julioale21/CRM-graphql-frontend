@@ -4,11 +4,16 @@ import { Query, Mutation } from "react-apollo";
 import { GET_ALL_CUSTOMERS_QUERY } from "../../graphql/queries";
 import { DELETE_CUSTOMER } from "../../graphql/mutations";
 import { Link } from "react-router-dom";
+import Success from "../alerts/success";
 import Pager from "../Pager";
 
 class Customers extends Component {
   limit = 10;
   state = {
+    alert: {
+      show: false,
+      message: "",
+    },
     paginate: {
       offset: 0,
       page: 1,
@@ -34,6 +39,12 @@ class Customers extends Component {
   };
 
   render() {
+    const {
+      alert: { show, message },
+    } = this.state;
+
+    const alert = show ? <Success message={message} /> : "";
+
     return (
       <Query
         query={GET_ALL_CUSTOMERS_QUERY}
@@ -52,6 +63,9 @@ class Customers extends Component {
               <h2 className="text-center text-2xl font-bold uppercase">
                 Customers List
               </h2>
+
+              {alert}
+
               <ul className="mt-4">
                 {data.getCustomers.map((customer) => (
                   <li
@@ -63,7 +77,29 @@ class Customers extends Component {
                         {customer.name} {customer.lastName}
                       </div>
                       <div className="col-span-1 flex justify-end">
-                        <Mutation mutation={DELETE_CUSTOMER}>
+                        <Mutation
+                          mutation={DELETE_CUSTOMER}
+                          onCompleted={(data) => {
+                            this.setState(
+                              {
+                                alert: {
+                                  show: true,
+                                  message: data.deleteCustomer,
+                                },
+                              },
+                              () => {
+                                setTimeout(() => {
+                                  this.setState({
+                                    alert: {
+                                      show: false,
+                                      message: "",
+                                    },
+                                  });
+                                }, 3000);
+                              }
+                            );
+                          }}
+                        >
                           {(deleteCustomer) => (
                             <button
                               type="button"
