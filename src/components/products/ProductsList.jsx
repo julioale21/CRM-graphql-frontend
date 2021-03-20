@@ -3,15 +3,29 @@ import { Mutation, Query } from "react-apollo";
 import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
 import { DELETE_PRODUCT } from "../../graphql/mutations";
 import { Link } from "react-router-dom";
+import Success from "../alerts/success";
 class ProductsList extends Component {
-  state = {};
+  state = {
+    alert: {
+      show: false,
+      message: "",
+    },
+  };
 
   render() {
+    const {
+      alert: { show, message },
+    } = this.state;
+
+    const alert = show ? <Success message={message} /> : "";
+
     return (
       <Fragment>
         <h2 className="text-center uppercase font-bold text-2xl my-4">
           Product List
         </h2>
+
+        {alert}
 
         <Query query={GET_ALL_PRODUCTS_QUERY} pollInterval={1000}>
           {({ loading, error, data, startPolling, stopPollong }) => {
@@ -44,7 +58,29 @@ class ProductsList extends Component {
                         {product.stock}
                       </td>
                       <td className="py-3 px-6 text-center whitespace-nowrap">
-                        <Mutation mutation={DELETE_PRODUCT}>
+                        <Mutation
+                          mutation={DELETE_PRODUCT}
+                          onCompleted={(data) => {
+                            this.setState(
+                              {
+                                alert: {
+                                  show: true,
+                                  message: data.deleteProduct,
+                                },
+                              },
+                              () => {
+                                setTimeout(() => {
+                                  this.setState({
+                                    alert: {
+                                      show: false,
+                                      message: "",
+                                    },
+                                  });
+                                }, 3000);
+                              }
+                            );
+                          }}
+                        >
                           {(deleteProduct) => (
                             <button
                               onClick={() => {
