@@ -11,11 +11,19 @@ const Header = () => {
   };
 
   const handleNavCustomerCollapse = () => {
+    setIsNavProductCollapse(false);
     setIsNavCustomersCollapse(!isNavCustomersCollapse);
   };
 
   const handleNavProductCollapse = () => {
+    setIsNavCustomersCollapse(false);
     setIsNavProductCollapse(!isNavProductCollapse);
+  };
+
+  const resetAllCollapse = () => {
+    setIsNavCollapsed(false);
+    setIsNavCustomersCollapse(false);
+    setIsNavProductCollapse(false);
   };
 
   return (
@@ -31,7 +39,7 @@ const Header = () => {
         </a>
       </div>
 
-      <div className="block sm:hidden">
+      <div className="sm:hidden">
         <button
           onClick={handleNavCollapse}
           id="nav-toggle"
@@ -49,7 +57,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`w-full flex-grow flex-col sm:flex-row sm:justify-center items-start sm:items-center sm:w-auto pt-6 sm:pt-0 ${
+        className={`w-full flex-grow flex-col sm:flex sm:flex-row sm:justify-center items-center sm:items-center sm:w-auto pt-6 sm:pt-0 ${
           isNavCollapsed ? "flex" : "hidden"
         }`}
         id="nav-content"
@@ -58,7 +66,7 @@ const Header = () => {
           <button
             onClick={handleNavCustomerCollapse}
             type="button"
-            className="text-white group bg-green-300 p-2 rounded-md  inline-flex items-center text-base font-medium hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+            className="group p-2 inline-flex items-center text-base font-medium text-green-300 focus:outline-none hover:text-green-400"
             aria-expanded="false"
           >
             <span>Customers</span>
@@ -79,12 +87,13 @@ const Header = () => {
           <div
             className={`${
               isNavCustomersCollapse ? "block" : "hidden"
-            } absolute z-10 -ml-3 mt-3 transform px-2 w-screen sm:max-w-sm sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2`}
+            } absolute z-10  mt-3 transform px-2 w-screen sm:max-w-xs md:max-w-md sm:px-0 ml-0 left-1/2 -translate-x-1/2`}
           >
             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <a
-                  href="#"
+                <Link
+                  onClick={resetAllCollapse}
+                  to="/"
                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                 >
                   <svg
@@ -105,9 +114,10 @@ const Header = () => {
                     <p className="text-base font-medium text-gray-900">Customers</p>
                     <p className="mt-1 text-sm text-gray-500">Get a all customes.</p>
                   </div>
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  onClick={resetAllCollapse}
+                  to="/customers/new"
                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                 >
                   <svg
@@ -132,7 +142,7 @@ const Header = () => {
                       Create a new customer.
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -142,7 +152,7 @@ const Header = () => {
           <button
             onClick={handleNavProductCollapse}
             type="button"
-            className="text-white group bg-green-300 p-2 rounded-md  inline-flex items-center text-base font-medium hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+            className="group p-2 inline-flex items-center text-base font-medium text-green-300 focus:outline-none hover:text-green-400"
             aria-expanded="false"
           >
             <span>Products</span>
@@ -163,12 +173,13 @@ const Header = () => {
           <div
             className={`${
               isNavProductCollapse ? "block" : "hidden"
-            } absolute z-10 -ml-3 mt-3 transform px-2 w-screen sm:max-w-sm sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2`}
+            } absolute z-10 mt-3 transform px-2 w-screen sm:max-w-sm sm:px-0 ml-0 left-1/2 -translate-x-1/2`}
           >
             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <a
-                  href="#"
+                <Link
+                  onClick={resetAllCollapse}
+                  to="/products"
                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                 >
                   <svg
@@ -189,9 +200,10 @@ const Header = () => {
                     <p className="text-base font-medium text-gray-900">Products</p>
                     <p className="mt-1 text-sm text-gray-500">Get a all products.</p>
                   </div>
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  onClick={resetAllCollapse}
+                  to="/products/new"
                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                 >
                   <svg
@@ -216,7 +228,7 @@ const Header = () => {
                       Create a new product.
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
