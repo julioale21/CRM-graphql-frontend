@@ -4,26 +4,26 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [isNavCustomersCollapse, setIsNavCustomersCollapse] = useState(false);
-  const [isNavProductCollapse, setIsNavProductCollapse] = useState(false);
+  const [isNavProductCollapse, setIsNavProductsCollapse] = useState(false);
 
   const handleNavCollapse = () => {
     setIsNavCollapsed(!isNavCollapsed);
   };
 
   const handleNavCustomerCollapse = () => {
-    setIsNavProductCollapse(false);
+    setIsNavProductsCollapse(false);
     setIsNavCustomersCollapse(!isNavCustomersCollapse);
   };
 
   const handleNavProductCollapse = () => {
     setIsNavCustomersCollapse(false);
-    setIsNavProductCollapse(!isNavProductCollapse);
+    setIsNavProductsCollapse(!isNavProductCollapse);
   };
 
   const resetAllCollapse = () => {
     setIsNavCollapsed(false);
     setIsNavCustomersCollapse(false);
-    setIsNavProductCollapse(false);
+    setIsNavProductsCollapse(false);
   };
 
   return (

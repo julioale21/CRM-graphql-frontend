@@ -60,7 +60,7 @@ class Customers extends Component {
 
           return (
             <Fragment>
-              <h2 className="text-center text-2xl font-bold uppercase">
+              <h2 className="text-center text-2xl font-bold uppercase p-2">
                 Customers List
               </h2>
 
@@ -70,13 +70,19 @@ class Customers extends Component {
                 {data.getCustomers.map((customer) => (
                   <li
                     key={customer.id}
-                    className="border list-none rounded-sm px-3 py-3"
+                    className="border border-gray-100 rounded-sm list-none rounded-sm px-3 py-3 my-1"
                   >
                     <div className="grid grid-cols-3">
                       <div className="col-span-2 text-sm sm:text-lg">
                         {customer.name} {customer.lastName}
                       </div>
                       <div className="col-span-1 flex justify-end">
+                        <Link
+                          to={`/orders/new/:${customer.id}`}
+                          className="btn border border-yellow-400 text-yellow-400 flex items-center text-sm font-bold hover:bg-yellow-100 hover:text-yellow-500 mr-2"
+                        >
+                          New Order
+                        </Link>
                         <Mutation
                           mutation={DELETE_CUSTOMER}
                           onCompleted={(data) => {
@@ -103,7 +109,7 @@ class Customers extends Component {
                           {(deleteCustomer) => (
                             <button
                               type="button"
-                              className="btn bg-red-500 hover:bg-red-700 text-tiny mr-2 sm:text-lg"
+                              className="btn border border-red-400 text-red-400 text-sm font-bold hover:bg-red-100 hover:text-red-500 mr-2"
                               onClick={() => {
                                 if (
                                   window.confirm(
@@ -124,7 +130,7 @@ class Customers extends Component {
                         </Mutation>
                         <Link
                           to={`/customer/edit/${customer.id}`}
-                          className="btn bg-green-400 hover:bg-green-500 text-tiny sm:text-lg"
+                          className="btn border border-green-400 text-green-400 text-sm hover:bg-green-100  hover:text-green-500"
                         >
                           Edit
                         </Link>
