@@ -57,7 +57,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`w-full flex-grow flex-col sm:flex sm:flex-row sm:justify-center items-center sm:items-center sm:w-auto pt-6 sm:pt-0 ${
+        className={`w-full flex-grow flex-col sm:flex sm:flex-row sm:justify-end items-center sm:w-auto pt-6 sm:pt-0 ${
           isNavCollapsed ? "flex" : "hidden"
         }`}
         id="nav-content"
@@ -87,7 +87,7 @@ const Header = () => {
           <div
             className={`${
               isNavCustomersCollapse ? "block" : "hidden"
-            } absolute z-10  mt-3 transform px-2 w-screen sm:max-w-xs md:max-w-md sm:px-0 ml-0 left-1/2 -translate-x-1/2`}
+            } absolute z-10  mt-3 transform px-2 w-screen sm:max-w-xs sm:px-0 ml-0 left-1/2 -translate-x-1/2 sm:right-0 sm:left-0 sm:-translate-x-2/3`}
           >
             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
@@ -173,7 +173,7 @@ const Header = () => {
           <div
             className={`${
               isNavProductCollapse ? "block" : "hidden"
-            } absolute z-10 mt-3 transform px-2 w-screen sm:max-w-sm sm:px-0 ml-0 left-1/2 -translate-x-1/2`}
+            } absolute z-10  mt-3 transform px-2 w-screen sm:max-w-xs sm:px-0 ml-0 left-1/2 -translate-x-1/2 sm:right-0 sm:left-0 sm:-translate-x-2/3`}
           >
             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
