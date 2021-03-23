@@ -78,10 +78,10 @@ class Customers extends Component {
                       </div>
                       <div className="col-span-1 flex justify-end">
                         <Link
-                          to={`/orders/new/:${customer.id}`}
-                          className="btn border border-yellow-400 text-yellow-400 flex items-center text-sm font-bold hover:bg-yellow-100 hover:text-yellow-500 mr-2"
+                          to={`/orders/new/${customer.id}`}
+                          className="btn border border-yellow-400 text-yellow-400 flex items-center text-xs sm:text-sm font-bold hover:bg-yellow-100 hover:text-yellow-500 mr-2"
                         >
-                          New Order
+                          <p>New Order</p>
                         </Link>
                         <Mutation
                           mutation={DELETE_CUSTOMER}
@@ -109,7 +109,7 @@ class Customers extends Component {
                           {(deleteCustomer) => (
                             <button
                               type="button"
-                              className="btn border border-red-400 text-red-400 text-sm font-bold hover:bg-red-100 hover:text-red-500 mr-2"
+                              className="btn border border-red-400 text-red-400 text-xs sm:text-sm font-bold hover:bg-red-100 hover:text-red-500 mr-2"
                               onClick={() => {
                                 if (
                                   window.confirm(
@@ -124,13 +124,13 @@ class Customers extends Component {
                                 }
                               }}
                             >
-                              Delete
+                              <p>Delete</p>
                             </button>
                           )}
                         </Mutation>
                         <Link
                           to={`/customer/edit/${customer.id}`}
-                          className="btn border border-green-400 text-green-400 text-sm hover:bg-green-100  hover:text-green-500"
+                          className="btn flex items-center border border-green-400 text-green-400 text-xs sm:text-sm hover:bg-green-100  hover:text-green-500"
                         >
                           Edit
                         </Link>
