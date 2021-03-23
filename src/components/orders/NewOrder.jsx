@@ -3,6 +3,7 @@ import CustomerCard from "./CustomerCard";
 import { Query } from "react-apollo";
 import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
 import Spinner from "../Spinner";
+import OrderContent from "./OrderContent";
 
 class NewOrder extends Component {
   state = {};
@@ -19,11 +20,15 @@ class NewOrder extends Component {
           <div className="col-span-3 sm:col-span-2 mt-12 sm:mt-0">
             <Query query={GET_ALL_PRODUCTS_QUERY} pollInterval={1000}>
               {({ loading, error, data, startPolling, stopPolling }) => {
-                if (loading) return <Spinner className="mt-5" />;
+                if (loading) return <Spinner textColor={"text-blue-400"} />;
                 if (error) return `Error: ${error.message}`;
-                // eslint-disable-next-line no-console
-                console.log(data.getProducts);
-                return <Spinner textColor={"text-blue-400"} />;
+
+                return (
+                  <OrderContent
+                    products={data.getProducts}
+                    customerId={customerId}
+                  />
+                );
               }}
             </Query>
           </div>
