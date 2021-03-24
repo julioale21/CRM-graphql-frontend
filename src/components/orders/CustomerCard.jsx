@@ -5,7 +5,7 @@ import { GET_CUSTOMER_QUERY } from "../../graphql/queries";
 const CustomerCard = ({ id }) => {
   return (
     <Fragment>
-      <h2 className="text-center my-5 uppercase font-bold text-xl">Customer</h2>
+      <h2 className="text-center my-4 font-bold text-2xl">Customer</h2>
       <Query query={GET_CUSTOMER_QUERY} variables={{ id: id }} pollInterval={500}>
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return "Cargando...";
@@ -13,7 +13,7 @@ const CustomerCard = ({ id }) => {
 
           const { name, lastName, age, emails, company, type } = data.getCustomer;
           return (
-            <ul>
+            <ul className="border p-2 rounded border-green-400 shadow">
               <li className="font-bold text-center sm:text-left mt-3">
                 Name: <span className="ml-2 font-light">{name}</span>
               </li>
@@ -31,7 +31,10 @@ const CustomerCard = ({ id }) => {
               </li>
               {emails.map((item, index) => {
                 return (
-                  <li key={index} className="font-bold">
+                  <li
+                    key={index}
+                    className="font-bold text-center sm:text-left mt-3"
+                  >
                     Email {index + 1}:
                     <span className="ml-2 font-light">{item.email}</span>
                   </li>

@@ -1,4 +1,4 @@
-/*! tailwindcss v2.0.4 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -2096,8 +2096,7 @@ video {
 }
 
 .bg-clip-text {
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
 }
 
 .bg-transparent {
@@ -30789,8 +30788,7 @@ video {
   }
 
   .sm\:bg-clip-text {
-    -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
   }
 
   .sm\:bg-transparent {
@@ -59336,8 +59334,7 @@ video {
   }
 
   .md\:bg-clip-text {
-    -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
   }
 
   .md\:bg-transparent {
@@ -87883,8 +87880,7 @@ video {
   }
 
   .lg\:bg-clip-text {
-    -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
   }
 
   .lg\:bg-transparent {
@@ -116430,8 +116426,7 @@ video {
   }
 
   .xl\:bg-clip-text {
-    -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
   }
 
   .xl\:bg-transparent {
@@ -144977,8 +144972,7 @@ video {
   }
 
   .\32xl\:bg-clip-text {
-    -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
   }
 
   .\32xl\:bg-transparent {

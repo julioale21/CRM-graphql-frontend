@@ -12,7 +12,6 @@ class NewOrder extends Component {
 
     return (
       <Fragment>
-        <h2 className="text-center my-5 uppercase font-bold text-2xl">New Order</h2>
         <div className="grid grid-cols-3 gap-3">
           <div className="col-span-3 sm:col-span-1">
             <CustomerCard id={customerId} />
