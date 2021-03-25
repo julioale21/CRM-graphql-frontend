@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Query } from "react-apollo";
 import { GET_CUSTOMER_QUERY } from "../../graphql/queries";
+import profileImage from "../../assets/profile.jpg";
 
 const CustomerCard = ({ id }) => {
   return (
@@ -13,34 +14,37 @@ const CustomerCard = ({ id }) => {
 
           const { name, lastName, age, emails, company, type } = data.getCustomer;
           return (
-            <ul className="border p-2 rounded border-green-400 shadow">
-              <li className="font-bold text-center sm:text-left mt-3">
-                Name: <span className="ml-2 font-light">{name}</span>
-              </li>
-              <li className="font-bold text-center sm:text-left mt-3">
-                LastName: <span className="ml-2 font-light">{lastName}</span>
-              </li>
-              <li className="font-bold text-center sm:text-left mt-3">
-                Age: <span className="ml-2 font-light">{age}</span>
-              </li>
-              <li className="font-bold text-center sm:text-left mt-3">
-                Company: <span className="ml-2 font-light">{company}</span>
-              </li>
-              <li className="font-bold text-center sm:text-left mt-3">
-                Type: <span className="ml-2 font-light">{type}</span>
-              </li>
-              {emails.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="font-bold text-center sm:text-left mt-3"
-                  >
-                    Email {index + 1}:
-                    <span className="ml-2 font-light">{item.email}</span>
-                  </li>
-                );
-              })}
-            </ul>
+            <Fragment>
+              <div className="w-full flex justify-center items-center">
+                <img src={profileImage} alt="image profile" width="100" />
+              </div>
+
+              <ul>
+                <li className="font-bold text-center mt-3">
+                  Name: <span className="ml-2 font-light">{name}</span>
+                </li>
+                <li className="font-bold text-center mt-3">
+                  LastName: <span className="ml-2 font-light">{lastName}</span>
+                </li>
+                <li className="font-bold text-center mt-3">
+                  Age: <span className="ml-2 font-light">{age}</span>
+                </li>
+                <li className="font-bold text-center mt-3">
+                  Company: <span className="ml-2 font-light">{company}</span>
+                </li>
+                <li className="font-bold text-center mt-3">
+                  Type: <span className="ml-2 font-light">{type}</span>
+                </li>
+                {emails.map((item, index) => {
+                  return (
+                    <li key={index} className="font-bold text-center mt-3">
+                      Email {index + 1}:
+                      <span className="ml-2 font-light">{item.email}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Fragment>
           );
         }}
       </Query>

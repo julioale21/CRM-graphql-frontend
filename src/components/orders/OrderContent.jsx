@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import GenerateOrder from "./GenerateOrder";
 import Summary from "./Summary";
 
 class OrderContent extends Component {
@@ -87,6 +88,8 @@ class OrderContent extends Component {
         <p className="font-bold text-right mb-10">
           Total: <span className="font-normal">${this.state.total}</span>
         </p>
+
+        <GenerateOrder />
       </Fragment>
     );
   }

@@ -12,11 +12,11 @@ class NewOrder extends Component {
 
     return (
       <Fragment>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-16">
           <div className="col-span-3 sm:col-span-1">
             <CustomerCard id={customerId} />
           </div>
-          <div className="col-span-3 sm:col-span-2 mt-12 sm:mt-0">
+          <div className="col-span-3 sm:col-span-2 mt-3 sm:mt-0">
             <Query query={GET_ALL_PRODUCTS_QUERY} pollInterval={1000}>
               {({ loading, error, data, startPolling, stopPolling }) => {
                 if (loading) return <Spinner textColor={"text-blue-400"} />;
