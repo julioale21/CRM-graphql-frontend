@@ -89,7 +89,7 @@ class OrderContent extends Component {
           Total: <span className="font-normal">${this.state.total}</span>
         </p>
 
-        <GenerateOrder />
+        <GenerateOrder products={this.state.products} total={this.state.total} />
       </Fragment>
     );
   }
