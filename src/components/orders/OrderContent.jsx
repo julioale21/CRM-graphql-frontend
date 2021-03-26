@@ -3,6 +3,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import GenerateOrder from "./GenerateOrder";
 import Summary from "./Summary";
+import Error from "../alerts/Error";
 
 class OrderContent extends Component {
   state = {
@@ -71,6 +72,7 @@ class OrderContent extends Component {
     return (
       <Fragment>
         <h2 className="text-center my-4 font-bold text-2xl">Select products</h2>
+        {message}
         <Select
           onChange={this.selectProduct}
           options={this.props.products}
