@@ -1,4 +1,7 @@
 import React from "react";
+import { Mutation } from "react-apollo";
+import { CREATE_ORDER } from "../../graphql/mutations";
+import { withRouter } from "react-router-dom";
 
 const validateOrder = (props) => {
   return !props.products || props.total === 0;
@@ -6,14 +9,34 @@ const validateOrder = (props) => {
 
 const GenerateOrder = (props) => {
   return (
-    <button
-      className={`btn bg-yellow-400 mt-4 ${
-        validateOrder(props) ? "btn-disabled" : ""
-      }`}
-    >
-      Generate Order
-    </button>
+    <Mutation mutation={CREATE_ORDER} onCompleted={() => props.history.push("/")}>
+      {(createOrder) => (
+        <button
+          type="button"
+          className={`btn bg-yellow-400 mt-4 ${
+            validateOrder(props) ? "btn-disabled" : ""
+          }`}
+          onClick={(e) => {
+            const productsInput = props.products.map(
+              ({ name, price, stock, ...object }) => object
+            );
+            // eslint-disable-next-line no-console
+            const input = {
+              order: productsInput,
+              total: props.total,
+              customer: props.customerId,
+            };
+
+            createOrder({
+              variables: { input },
+            });
+          }}
+        >
+          Generate Order
+        </button>
+      )}
+    </Mutation>
   );
 };
 
-export default GenerateOrder;
+export default withRouter(GenerateOrder);

@@ -63,3 +63,11 @@ export const DELETE_PRODUCT = gql`
     deleteProduct(id: $id)
   }
 `;
+
+export const CREATE_ORDER = gql`
+  mutation($input: OrderInput) {
+    createOrder(input: $input) {
+      id
+    }
+  }
+`;
