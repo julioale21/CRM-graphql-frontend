@@ -13,7 +13,7 @@ const GenerateOrder = (props) => {
       {(createOrder) => (
         <button
           type="button"
-          className={`btn bg-yellow-400 mt-4 ${
+          className={`btn bg-yellow-400 mt-4 mb-6 ${
             validateOrder(props) ? "btn-disabled" : ""
           }`}
           onClick={(e) => {

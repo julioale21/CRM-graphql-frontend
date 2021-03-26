@@ -66,6 +66,8 @@ class OrderContent extends Component {
 
   render() {
     //const animatedComponents = makeAnimated();
+    const message =
+      this.state.total < 0 ? <Error error="The amounts cannot be negative." /> : "";
     return (
       <Fragment>
         <h2 className="text-center my-4 font-bold text-2xl">Select products</h2>

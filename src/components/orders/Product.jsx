@@ -13,9 +13,14 @@ class Product extends Component {
           <td className="text-center text-tiny sm:text-sm">{product.stock}</td>
           <td className="text-center">
             <input
-              onChange={(e) => updateQuantity(e.target.value, index)}
+              onChange={(e) => {
+                if (e.target.value > product.stock) {
+                  e.target.value = 0;
+                }
+                updateQuantity(e.target.value, index);
+              }}
               type="number"
-              min="0"
+              min="1"
               className="border border-2 border-green-100 w-20 text-right"
             />
           </td>
