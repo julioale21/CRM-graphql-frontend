@@ -73,15 +73,21 @@ class Customers extends Component {
                     className="border border-gray-100 rounded-sm list-none rounded-sm px-3 py-3 my-1"
                   >
                     <div className="grid grid-cols-3">
-                      <div className="col-span-2 text-sm sm:text-lg">
-                        {customer.name} {customer.lastName}
+                      <div className="text-center  sm:text-left col-span-3 mb-4 sm:mb-0 sm:col-span-2 text-lg">
+                        {customer.name} {customer.lastName} - {customer.company}
                       </div>
-                      <div className="col-span-1 flex justify-end">
+                      <div className="col-span-3 sm:col-span-1 flex justify-center sm:justify-end">
                         <Link
                           to={`/orders/new/${customer.id}`}
                           className="btn border border-yellow-400 text-yellow-400 flex items-center text-xs sm:text-sm font-bold hover:bg-yellow-100 hover:text-yellow-500 mr-2"
                         >
                           <p>New Order</p>
+                        </Link>
+                        <Link
+                          to={`/orders/${customer.id}`}
+                          className="btn border border-blue-400 text-blue-400 flex items-center text-xs sm:text-sm font-bold hover:bg-blue-100 hover:text-blue-500 mr-2"
+                        >
+                          <p>Orders</p>
                         </Link>
                         <Mutation
                           mutation={DELETE_CUSTOMER}

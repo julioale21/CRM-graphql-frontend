@@ -13,6 +13,8 @@ import ProductsList from "./components/products/ProductsList";
 import EditProduct from "./components/products/EditProduct";
 
 import NewOrder from "./components/orders/NewOrder";
+import CustomerOrdersList from "./components/orders/CustomerOrdersList";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const client = new ApolloClient({
@@ -44,6 +46,11 @@ class App extends Component {
                 <Route exact path="/products/edit/:id" component={EditProduct} />
 
                 <Route exact path="/orders/new/:customerId" component={NewOrder} />
+                <Route
+                  exact
+                  path="/orders/:customerId"
+                  component={CustomerOrdersList}
+                />
               </Switch>
             </div>
           </Fragment>
