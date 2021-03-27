@@ -17,9 +17,13 @@ class NewOrder extends Component {
             <CustomerCard id={customerId} />
           </div>
           <div className="col-span-3 sm:col-span-2 mt-3 sm:mt-0">
-            <Query query={GET_ALL_PRODUCTS_QUERY} pollInterval={1000}>
+            <Query
+              query={GET_ALL_PRODUCTS_QUERY}
+              pollInterval={1000}
+              variables={{ stock: true }}
+            >
               {({ loading, error, data, startPolling, stopPolling }) => {
-                if (loading) return <Spinner textColor={"text-blue-400"} />;
+                if (loading) return <Spinner textColor={"text-green-400"} />;
                 if (error) return `Error: ${error.message}`;
 
                 return (

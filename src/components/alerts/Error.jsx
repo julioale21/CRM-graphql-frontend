@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 const Error = ({ error }) => (
   <Fragment>
-    <div className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-red-700 bg-red-100 border border-red-300 ">
+    <div className="flex justify-center items-center my-1 font-medium py-1 px-2 bg-white rounded-md text-red-700 bg-red-100 border border-red-300 mb-3">
       <div slot="avatar">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ const Error = ({ error }) => (
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
       </div>
-      <div className="text-xl font-normal  max-w-full flex-initial">
+      <div className="text-sx font-normal  max-w-full flex-initial">
         <p className="font-bold">There is an error.</p>
         <p>{error}</p>
       </div>
