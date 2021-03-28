@@ -3,6 +3,7 @@ import { GET_PRODUCT_QUERY } from "../../graphql/queries";
 import { Query, Mutation } from "react-apollo";
 import ProductSummary from "./ProductSummary";
 import { UPDATE_ORDER_STATUS } from "../../graphql/mutations";
+import Swal from "sweetalert2";
 
 const Order = (props) => {
   const { order } = props;
@@ -21,13 +22,24 @@ const Order = (props) => {
     updateOrderStatus({ variables: { input } });
   };
 
+  const showNotification = (data) => {
+    Swal.fire({
+      title: "Success!",
+      text: data.updateOrderStatus,
+      icon: "success",
+    });
+  };
+
   return (
     <div className="col-span-12 sm:col-span-4 gap-4 border border-green-300 rounded shadow p-4">
       <div>
         <div>
           <p className="font-bold">
             Status:
-            <Mutation mutation={UPDATE_ORDER_STATUS}>
+            <Mutation
+              mutation={UPDATE_ORDER_STATUS}
+              onCompleted={(data) => showNotification(data)}
+            >
               {(updateOrderStatus) => (
                 <select
                   onChange={(e) => handleSelectChanged(e, updateOrderStatus)}
