@@ -69,3 +69,14 @@ export const GET_ORDERS_BY_CUSTOMER = gql`
     }
   }
 `;
+
+export const GET_TOP_CUSTOMERS = gql`
+  query {
+    topCustomers {
+      total
+      customer {
+        name
+      }
+    }
+  }
+`;
