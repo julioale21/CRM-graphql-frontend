@@ -42,7 +42,7 @@ const Order = (props) => {
 
   return (
     <div
-      className={`col-span-12 sm:col-span-6 md:col-span-4 gap-4  border-4 ${appearance} rounded shadow p-4`}
+      className={`col-span-12 md:col-span-6 lg:col-span-4 gap-4  border-4 ${appearance} rounded shadow p-4`}
     >
       <div>
         <div>
