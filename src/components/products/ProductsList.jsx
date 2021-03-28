@@ -75,75 +75,79 @@ class ProductsList extends Component {
                     </tr>
                   </thead>
                   <tbody className="text-gray-600 text-sm font-light">
-                    {data.getProducts.map((product) => (
-                      <tr
-                        key={product.id}
-                        className="border-b border-gray-200 hover:bg-gray-100"
-                      >
-                        <td className="py-3 px-6 text-center whitespace-nowrap">
-                          {product.name}
-                        </td>
-                        <td className="py-3 px-6 text-center whitespace-nowrap">
-                          {product.price}
-                        </td>
-                        <td className="py-3 px-6 text-center whitespace-nowrap">
-                          {product.stock}
-                        </td>
-                        <td className="py-3 px-6 text-center whitespace-nowrap">
-                          <Mutation
-                            mutation={DELETE_PRODUCT}
-                            onCompleted={(data) => {
-                              this.setState(
-                                {
-                                  alert: {
-                                    show: true,
-                                    message: data.deleteProduct,
+                    {data.getProducts.map((product) => {
+                      const { stock } = product;
+                      let appearance = stock < 5 ? "font-light bg-red-200" : "";
+                      return (
+                        <tr
+                          key={product.id}
+                          className={`${appearance} border-b border-gray-200`}
+                        >
+                          <td className="py-3 px-6 text-center whitespace-nowrap">
+                            {product.name}
+                          </td>
+                          <td className="py-3 px-6 text-center whitespace-nowrap">
+                            {product.price}
+                          </td>
+                          <td className="py-3 px-6 text-center whitespace-nowrap">
+                            {product.stock}
+                          </td>
+                          <td className="py-3 px-6 text-center whitespace-nowrap">
+                            <Mutation
+                              mutation={DELETE_PRODUCT}
+                              onCompleted={(data) => {
+                                this.setState(
+                                  {
+                                    alert: {
+                                      show: true,
+                                      message: data.deleteProduct,
+                                    },
                                   },
-                                },
-                                () => {
-                                  setTimeout(() => {
-                                    this.setState({
-                                      alert: {
-                                        show: false,
-                                        message: "",
-                                      },
-                                    });
-                                  }, 3000);
-                                }
-                              );
-                            }}
-                          >
-                            {(deleteProduct) => (
-                              <button
-                                onClick={() => {
-                                  if (
-                                    window.confirm(
-                                      "Are you sure that you want to remove the product?."
-                                    )
-                                  ) {
-                                    deleteProduct({
-                                      variables: { id: product.id },
-                                    });
+                                  () => {
+                                    setTimeout(() => {
+                                      this.setState({
+                                        alert: {
+                                          show: false,
+                                          message: "",
+                                        },
+                                      });
+                                    }, 3000);
                                   }
-                                }}
-                                type="button"
-                                className="btn inline-block bg-red-500 text-white font-bold hover:bg-red-700 text-tiny mr-2 sm:text-sm"
-                              >
-                                &times; Delete
-                              </button>
-                            )}
-                          </Mutation>
-                        </td>
-                        <td className="py-3 px-6 text-center whitespace-nowrap">
-                          <Link
-                            to={`/products/edit/${product.id}`}
-                            className="btn inline-block bg-green-400 text-white font-bold hover:bg-green-500 text-tiny sm:text-sm w-20"
-                          >
-                            Edit
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
+                                );
+                              }}
+                            >
+                              {(deleteProduct) => (
+                                <button
+                                  onClick={() => {
+                                    if (
+                                      window.confirm(
+                                        "Are you sure that you want to remove the product?."
+                                      )
+                                    ) {
+                                      deleteProduct({
+                                        variables: { id: product.id },
+                                      });
+                                    }
+                                  }}
+                                  type="button"
+                                  className="btn inline-block border border-red-500 font-bold hover:bg-red-200 text-tiny text-red-500 mr-2 sm:text-sm"
+                                >
+                                  Delete
+                                </button>
+                              )}
+                            </Mutation>
+                          </td>
+                          <td className="py-3 px-6 text-center whitespace-nowrap">
+                            <Link
+                              to={`/products/edit/${product.id}`}
+                              className="btn inline-block border border-green-400 text-green-400 font-bold hover:bg-green-200 text-tiny sm:text-sm w-20"
+                            >
+                              Edit
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
 
