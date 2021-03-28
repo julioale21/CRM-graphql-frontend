@@ -13,7 +13,7 @@ const CustomerOrdersList = (props) => {
         Customer Orders
       </h2>
 
-      <div className="grid grid-cols-12 gap-4">
+      <div className="grid grid-cols-12 gap-4 mb-10">
         <Query
           query={GET_ORDERS_BY_CUSTOMER}
           variables={{ customer: customerId }}
