@@ -71,3 +71,9 @@ export const CREATE_ORDER = gql`
     }
   }
 `;
+
+export const UPDATE_ORDER_STATUS = gql`
+  mutation($input: OrderInput) {
+    updateOrderStatus(input: $input)
+  }
+`;
