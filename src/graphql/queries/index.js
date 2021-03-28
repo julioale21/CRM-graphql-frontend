@@ -54,3 +54,18 @@ export const GET_PRODUCT_QUERY = gql`
     }
   }
 `;
+
+export const GET_ORDERS_BY_CUSTOMER = gql`
+  query($customer: String) {
+    getOrders(customer: $customer) {
+      id
+      order {
+        id
+        quantity
+      }
+      total
+      date
+      status
+    }
+  }
+`;
