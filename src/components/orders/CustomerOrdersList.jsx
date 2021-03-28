@@ -20,7 +20,12 @@ const CustomerOrdersList = (props) => {
           pollInterval={500}
         >
           {({ loading, error, data, startPolling, stopPolling }) => {
-            if (loading) return <Spinner textColor={"text-green-400"} />;
+            if (loading)
+              return (
+                <div className="col-span-12 md:col-span-6 lg:col-span-4 gap-4  border-4">
+                  <Spinner textColor={"text-green-400"} />
+                </div>
+              );
             if (error) return `Error: ${error.message}`;
 
             return data.getOrders.map((order) => (
