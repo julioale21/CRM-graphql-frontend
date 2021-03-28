@@ -7,7 +7,17 @@ import Swal from "sweetalert2";
 
 const Order = (props) => {
   const { order } = props;
+  const { status } = order;
   const date = new Date(Number(order.date));
+
+  let appearance;
+  if (status === "PENDING") {
+    appearance = "border-yellow-300";
+  } else if (status === "CANCELLED") {
+    appearance = "border-red-300";
+  } else {
+    appearance = "border-green-300";
+  }
 
   const handleSelectChanged = (e, updateOrderStatus) => {
     const input = {
@@ -31,7 +41,9 @@ const Order = (props) => {
   };
 
   return (
-    <div className="col-span-12 sm:col-span-4 gap-4 border border-green-300 rounded shadow p-4">
+    <div
+      className={`col-span-12 sm:col-span-6 md:col-span-4 gap-4  border-4 ${appearance} rounded shadow p-4`}
+    >
       <div>
         <div>
           <p className="font-bold">
@@ -44,7 +56,7 @@ const Order = (props) => {
                 <select
                   onChange={(e) => handleSelectChanged(e, updateOrderStatus)}
                   value={order.status}
-                  className="my-3 block border w-full"
+                  className={`my-3 block border w-full ${appearance}`}
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="COMPLETED">COMPLETED</option>
@@ -81,6 +93,7 @@ const Order = (props) => {
                       product={data.getProduct}
                       quantity={product.quantity}
                       key={product.id}
+                      color={appearance}
                     />
                   );
                 }}
