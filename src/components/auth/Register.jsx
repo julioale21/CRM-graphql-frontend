@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_USER } from "../../graphql/mutations";
+import Error from "../alerts/Error";
 
 const initialState = {
   username: "",
@@ -58,7 +59,11 @@ class Register extends Component {
       <Fragment>
         <h2 className="text-center font-bold text-2xl my-5">New User</h2>
 
-        <Mutation mutation={CREATE_USER} variables={{ username, password }}>
+        <Mutation
+          errorPolicy="ignore"
+          mutation={CREATE_USER}
+          variables={{ username, password }}
+        >
           {(createUser, { loading, error, data }) => {
             return (
               <form
@@ -66,6 +71,7 @@ class Register extends Component {
                 className="grid grid-cols-12"
               >
                 <div className="col-span-10 col-start-2 sm:col-span-8 sm:col-start-3">
+                  {error && <Error error={error} />}
                   <div className="mt-3">
                     <label
                       className="font-bold text-green-500 text-sm"
