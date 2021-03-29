@@ -16,6 +16,7 @@ import NewOrder from "./components/orders/NewOrder";
 import CustomerOrdersList from "./components/orders/CustomerOrdersList";
 
 import Panel from "./components/panel";
+import Register from "./components/auth/Register";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -54,6 +55,8 @@ class App extends Component {
                   path="/orders/:customerId"
                   component={CustomerOrdersList}
                 />
+
+                <Route exact path="/register" component={Register} />
               </Switch>
             </div>
           </Fragment>

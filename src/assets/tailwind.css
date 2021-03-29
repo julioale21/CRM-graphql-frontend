@@ -31,7 +31,7 @@
 }
 
 .form-control:focus {
-    @apply outline-none ring ring-indigo-100 border-indigo-300;
+    @apply outline-none ring ring-green-100 border-green-300;
 
     &.dark {
         @apply ring-gray-900 border-gray-500
@@ -65,3 +65,5 @@
 		transform: rotate(360deg);
 	}
 }
+
+
