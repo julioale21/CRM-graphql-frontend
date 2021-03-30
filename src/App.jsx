@@ -17,6 +17,7 @@ import CustomerOrdersList from "./components/orders/CustomerOrdersList";
 
 import Panel from "./components/panel";
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -38,7 +39,7 @@ class App extends Component {
         <Router>
           <Fragment>
             <Header />
-            <div className="mx-4 sm:container sm:mx-auto">
+            <div className="sm:container sm:mx-auto w-full h-screen">
               <Switch>
                 <Route exact path="/" component={CustomersList} />
                 <Route exact path="/customers/new" component={NewCustomer} />
@@ -57,6 +58,7 @@ class App extends Component {
                 />
 
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
               </Switch>
             </div>
           </Fragment>
