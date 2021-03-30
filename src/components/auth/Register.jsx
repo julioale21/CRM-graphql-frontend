@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_USER } from "../../graphql/mutations";
 import Error from "../alerts/Error";
+import { withRouter } from "react-router-dom";
 
 const initialState = {
   username: "",
@@ -47,8 +48,11 @@ class Register extends Component {
 
   handleSubmit = (e, createUser) => {
     e.preventDefault();
-    createUser().then((data) => {
+    if (!this.validateForm()) return;
+
+    createUser().then(() => {
       this.clearState();
+      this.props.history.push("/login");
     });
   };
 
@@ -57,12 +61,13 @@ class Register extends Component {
 
     return (
       <Fragment>
-        <h2 className="text-center font-bold text-2xl my-5">New User</h2>
+        <h2 className="text-center font-bold text-2xl pt-5">New User</h2>
 
         <Mutation
           errorPolicy="ignore"
           mutation={CREATE_USER}
           variables={{ username, password }}
+          onError={() => {}}
         >
           {(createUser, { loading, error, data }) => {
             return (
@@ -156,10 +161,10 @@ class Register extends Component {
 
                   <button
                     className={`${
-                      this.validateForm()
-                        ? "focus:outline-none hover:bg-green-200 border-green-400 hover:border-green-200"
-                        : "btn-disabled bg-gray-100 border-gray-100"
-                    } btn border float-right text-sm sm:text-base mt-5`}
+                      loading || !this.validateForm()
+                        ? "btn-disabled bg-gray-100 border-gray-100"
+                        : ""
+                    } btn border hover:bg-green-200 border-green-400 hover:border-green-200 float-right text-sm sm:text-base mt-5 focus:outline-none`}
                   >
                     Register
                   </button>
@@ -173,4 +178,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);
