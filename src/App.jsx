@@ -17,16 +17,18 @@ import Panel from "./components/panel";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
-  console.log(session);
+  const { getUser } = session;
+  const message = getUser ? `Welcome ${getUser.username}` : <Redirect to="/login" />;
   return (
     <Router>
       <Fragment>
         <Header />
         <div className="sm:container sm:mx-auto w-full h-screen">
+          <p className="text-right mt-3 mr-2">{message}</p>
           <Switch>
             <Route exact path="/" component={CustomersList} />
             <Route exact path="/customers/new" component={NewCustomer} />
