@@ -29230,6 +29230,10 @@ video {
   }
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
