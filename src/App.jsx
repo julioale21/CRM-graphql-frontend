@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import React, { Component, Fragment } from "react";
-import { ApolloProvider } from "react-apollo";
-import ApolloClient, { InMemoryCache } from "apollo-boost";
+import React, { Fragment } from "react";
 import Header from "./components/layout/Header";
 
 import CustomersList from "./components/customers/CustomersList";
@@ -19,64 +17,43 @@ import Panel from "./components/panel";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import Session from "./components/Session";
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
-  fetchOptions: {
-    credentials: "include",
-  },
-  request: (operation) => {
-    const token = localStorage.getItem("token");
-    operation.setContext({
-      headers: {
-        authorization: token,
-      },
-    });
-  },
-  cache: new InMemoryCache({
-    addTypename: false,
-  }),
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log("graphQLErrors", graphQLErrors);
-    console.log("networkError", networkError);
-  },
-});
+const App = ({ refetch, session }) => {
+  const { getUser } = session;
+  const message = getUser ? (
+    `Bienbenido: ${getUser.username}`
+  ) : (
+    <Redirect to="/login" />
+  );
+  return (
+    <Router>
+      <Fragment>
+        <Header />
+        <div className="sm:container sm:mx-auto w-full h-screen">
+          <p className="text-right mt-3 mr-3">{message}</p>
+          <Switch>
+            <Route exact path="/" component={CustomersList} />
+            <Route exact path="/customers/new" component={NewCustomer} />
+            <Route exact path="/customers/edit/:id" component={EditCustomer} />
 
-class App extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Router>
-          <Fragment>
-            <Header />
-            <div className="sm:container sm:mx-auto w-full h-screen">
-              <Switch>
-                <Route exact path="/" component={CustomersList} />
-                <Route exact path="/customers/new" component={NewCustomer} />
-                <Route exact path="/customers/edit/:id" component={EditCustomer} />
+            <Route exact path="/products" component={ProductsList} />
+            <Route exact path="/products/new" component={NewProduct} />
+            <Route exact path="/products/edit/:id" component={EditProduct} />
 
-                <Route exact path="/products" component={ProductsList} />
-                <Route exact path="/products/new" component={NewProduct} />
-                <Route exact path="/products/edit/:id" component={EditProduct} />
+            <Route exact path="/orders/new/:customerId" component={NewOrder} />
+            <Route exact path="/panel" component={Panel} />
+            <Route exact path="/orders/:customerId" component={CustomerOrdersList} />
 
-                <Route exact path="/orders/new/:customerId" component={NewOrder} />
-                <Route exact path="/panel" component={Panel} />
-                <Route
-                  exact
-                  path="/orders/:customerId"
-                  component={CustomerOrdersList}
-                />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" render={() => <Login refetch={refetch} />} />
+          </Switch>
+        </div>
+      </Fragment>
+    </Router>
+  );
+};
 
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-              </Switch>
-            </div>
-          </Fragment>
-        </Router>
-      </ApolloProvider>
-    );
-  }
-}
-
-export default App;
+const RootSession = Session(App);
+export { RootSession };
