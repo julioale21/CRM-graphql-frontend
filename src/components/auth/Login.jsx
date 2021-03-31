@@ -2,11 +2,13 @@ import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { DO_LOGIN } from "../../graphql/mutations";
+import Error from "../alerts/Error";
 
 const initialState = {
   username: "",
   password: "",
   showPassword: false,
+  error: null,
 };
 class Login extends Component {
   state = {
@@ -38,17 +40,25 @@ class Login extends Component {
 
     if (!this.validateForm()) return;
 
-    authenticateUser().then(async ({ data }) => {
-      localStorage.setItem("token", data.authenticateUser.token);
+    authenticateUser()
+      .then(async ({ data }) => {
+        localStorage.setItem("token", data.authenticateUser.token);
 
-      await this.props.refetch();
+        await this.props.refetch();
 
-      this.clearState();
+        this.clearState();
 
-      setTimeout(() => {
-        this.props.history.push("/panel");
-      }, 3000);
-    });
+        setTimeout(() => {
+          this.props.history.push("/panel");
+        }, 3000);
+      })
+      // eslint-disable-next-line no-console
+      .catch((error) => {
+        this.setState({ error });
+        setTimeout(() => {
+          this.setState({ error: null });
+        }, 3000);
+      });
   };
 
   render() {
@@ -65,7 +75,7 @@ class Login extends Component {
                 className="grid grid-cols-12"
               >
                 <div className="col-span-10 col-start-2 sm:col-span-8 sm:col-start-3">
-                  {error && <Error error={error} />}
+                  {this.state.error ? <Error error={this.state.error} /> : null}
                   <div className="mt-3">
                     <label
                       className="font-bold text-green-500 text-sm"

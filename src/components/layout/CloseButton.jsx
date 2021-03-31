@@ -2,10 +2,10 @@ import React from "react";
 import { ApolloConsumer } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
-const closeSession = (customer, session) => {
+const closeSession = (customer, history) => {
   localStorage.removeItem("token", "");
   customer.resetStore();
-  history.pushState("/login");
+  history.push("/login");
 };
 
 const CloseButton = ({ history }) => (
