@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CloseButton from "./CloseButton";
 
-const Header = () => {
+const Header = ({ session }) => {
+  let navBar = session.getUser ? <NavAuthenticated /> : <NavNotAuthenticated />;
+  return navBar;
+};
+
+const NavAuthenticated = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [isNavCustomersCollapse, setIsNavCustomersCollapse] = useState(false);
   const [isNavProductCollapse, setIsNavProductsCollapse] = useState(false);
@@ -25,7 +31,6 @@ const Header = () => {
     setIsNavCustomersCollapse(false);
     setIsNavProductsCollapse(false);
   };
-
   return (
     <nav className="flex items-center justify-between flex-wrap bg-black p-3 sm:px-16 w-full z-10 pin-t mb-0">
       <div className="flex items-center flex-no-shrink text-white mr-6">
@@ -233,17 +238,24 @@ const Header = () => {
             </div>
           </div>
         </div>
+        <CloseButton />
+      </div>
+    </nav>
+  );
+};
 
-        {/* <ul className="list-reset flex flex-col sm:flex-row justify-end flex-1 items-center">
-          <li className="w-full sm:w-auto sm:mr-3">
-            <Link
-              to="/products/new"
-              className="btn bg-transparent sm:bg-green-400 block sm:inline-block py-2 px-4 text-white no-underline hover:text-blue-200 w-40 sm:w-auto text-center"
-            >
-              New Product
-            </Link>
-          </li>
-        </ul> */}
+const NavNotAuthenticated = () => {
+  return (
+    <nav className="flex items-center justify-between flex-wrap bg-black p-3 sm:px-16 w-full z-10 pin-t mb-0">
+      <div className="flex items-center flex-no-shrink text-white mr-6">
+        <a
+          className="text-white no-underline hover:text-white hover:no-underline"
+          href="/"
+        >
+          <span className="text-2xl pl-2">
+            <i className="em em-grinning"></i>CRM
+          </span>
+        </a>
       </div>
     </nav>
   );

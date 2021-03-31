@@ -30,7 +30,7 @@ const App = ({ refetch, session }) => {
   return (
     <Router>
       <Fragment>
-        <Header />
+        <Header session={session} />
         <div className="sm:container sm:mx-auto w-full h-screen">
           <p className="text-right mt-3 mr-3">{message}</p>
           <Switch>
