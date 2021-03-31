@@ -1,9 +1,5 @@
 /* eslint-disable no-console */
-import React, { Component, Fragment } from "react";
-import Header from "./components/layout/Header";
-
 import CustomersList from "./components/customers/CustomersList";
-import NewCustomer from "./components/customers/NewCustomer";
 import EditCustomer from "./components/customers/EditCustomer";
 
 import NewProduct from "./components/products/NewProduct";
@@ -17,18 +13,23 @@ import Panel from "./components/panel";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+
 import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
   const { getUser } = session;
-  const message = getUser ? `Welcome ${getUser.username}` : <Redirect to="/login" />;
+  const message = getUser ? (
+    `Bienbenido: ${getUser.username}`
+  ) : (
+    <Redirect to="/login" />
+  );
   return (
     <Router>
       <Fragment>
-        <Header />
+        <Header session={session} />
         <div className="sm:container sm:mx-auto w-full h-screen">
-          <p className="text-right mt-3 mr-2">{message}</p>
+          <p className="text-right mt-3 mr-3">{message}</p>
           <Switch>
             <Route exact path="/" component={CustomersList} />
             <Route exact path="/customers/new" component={NewCustomer} />
@@ -52,5 +53,4 @@ const App = ({ refetch, session }) => {
 };
 
 const RootSession = Session(App);
-
 export { RootSession };
