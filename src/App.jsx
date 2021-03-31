@@ -1,10 +1,14 @@
 /* eslint-disable no-console */
+import { Fragment } from "react";
+import Header from "./components/layout/Header";
 import CustomersList from "./components/customers/CustomersList";
 import EditCustomer from "./components/customers/EditCustomer";
 
 import NewProduct from "./components/products/NewProduct";
 import ProductsList from "./components/products/ProductsList";
 import EditProduct from "./components/products/EditProduct";
+
+import NewCustomer from "./components/customers/NewCustomer";
 
 import NewOrder from "./components/orders/NewOrder";
 import CustomerOrdersList from "./components/orders/CustomerOrdersList";
