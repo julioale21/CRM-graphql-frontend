@@ -53,7 +53,11 @@ const App = ({ refetch, session }) => {
             <Route exact path="/panel" component={Panel} />
             <Route exact path="/orders/:customerId" component={CustomerOrdersList} />
 
-            <Route exact path="/register" component={Register} />
+            <Route
+              exact
+              path="/register"
+              render={() => <Register session={session} />}
+            />
             <Route exact path="/login" render={() => <Login refetch={refetch} />} />
           </Switch>
         </div>

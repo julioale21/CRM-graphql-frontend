@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_USER } from "../../graphql/mutations";
 import Error from "../alerts/Error";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 const initialState = {
   username: "",
@@ -66,9 +66,13 @@ class Register extends Component {
 
   render() {
     const { username, name, role, password, repeatedPassword } = this.state;
+    const userRole = this.props.session.getUser.role;
 
+    const redirect = userRole !== "ADMIN" ? <Redirect to="/" /> : "";
     return (
       <Fragment>
+        {redirect}
+
         <h2 className="text-center font-bold text-2xl pt-5">New User</h2>
 
         <Mutation

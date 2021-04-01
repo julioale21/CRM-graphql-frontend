@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CloseButton from "./CloseButton";
+import RegisterButton from "./RegisterButton";
 
 const Header = ({ session }) => {
-  let navBar = session.getUser ? <NavAuthenticated /> : <NavNotAuthenticated />;
+  let navBar = session.getUser ? (
+    <NavAuthenticated session={session} />
+  ) : (
+    <NavNotAuthenticated />
+  );
   return navBar;
 };
 
-const NavAuthenticated = () => {
+const NavAuthenticated = ({ session }) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [isNavCustomersCollapse, setIsNavCustomersCollapse] = useState(false);
   const [isNavProductCollapse, setIsNavProductsCollapse] = useState(false);
@@ -67,7 +72,7 @@ const NavAuthenticated = () => {
         }`}
         id="nav-content"
       >
-        <div className="relative sm:mr-4 mb-4 sm:mb-0">
+        <div className="relative sm:mr-2 sm:mb-0">
           <button
             onClick={handleNavCustomerCollapse}
             type="button"
@@ -238,6 +243,7 @@ const NavAuthenticated = () => {
             </div>
           </div>
         </div>
+        <RegisterButton session={session} />
         <CloseButton />
       </div>
     </nav>

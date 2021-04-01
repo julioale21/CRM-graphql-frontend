@@ -14,7 +14,7 @@ const CloseButton = ({ history }) => (
       return (
         <button
           onClick={() => closeSession(customer, history)}
-          className="group w-20 p-2 inline-flex items-center text-base font-medium text-green-300 focus:outline-none hover:text-green-400 sm:ml-4"
+          className="group w-20 p-2 inline-flex items-center text-base font-medium text-white focus:outline-none hover:text-green-100"
         >
           Close
         </button>
