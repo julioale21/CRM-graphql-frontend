@@ -84,7 +84,10 @@ export const GET_TOP_CUSTOMERS = gql`
 export const CURRENT_USER = gql`
   query {
     getUser {
+      id
       username
+      name
+      role
     }
   }
 `;

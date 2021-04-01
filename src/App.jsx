@@ -23,11 +23,7 @@ import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
   const { getUser } = session;
-  const message = getUser ? (
-    `Bienbenido: ${getUser.username}`
-  ) : (
-    <Redirect to="/login" />
-  );
+  const message = getUser ? `Bienbenido: ${getUser.name}` : <Redirect to="/login" />;
   return (
     <Router>
       <Fragment>

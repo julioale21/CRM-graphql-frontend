@@ -6,6 +6,8 @@ import { withRouter } from "react-router-dom";
 
 const initialState = {
   username: "",
+  name: "",
+  role: "",
   password: "",
   repeatedPassword: "",
   showPassword: false,
@@ -42,8 +44,14 @@ class Register extends Component {
   };
 
   validateForm = () => {
-    const { username, password, repeatedPassword } = this.state;
-    return username !== "" && password !== "" && password === repeatedPassword;
+    const { username, name, role, password, repeatedPassword } = this.state;
+    return (
+      username !== "" &&
+      name !== "" &&
+      role !== "" &&
+      password !== "" &&
+      password === repeatedPassword
+    );
   };
 
   handleSubmit = (e, createUser) => {
@@ -57,7 +65,7 @@ class Register extends Component {
   };
 
   render() {
-    const { username, password, repeatedPassword } = this.state;
+    const { username, name, role, password, repeatedPassword } = this.state;
 
     return (
       <Fragment>
@@ -66,7 +74,7 @@ class Register extends Component {
         <Mutation
           errorPolicy="ignore"
           mutation={CREATE_USER}
-          variables={{ username, password }}
+          variables={{ username, name, role, password }}
           onError={() => {}}
         >
           {(createUser, { loading, error, data }) => {
@@ -89,7 +97,7 @@ class Register extends Component {
                         onChange={this.updateState}
                         type="text"
                         name="username"
-                        placeholder="Name of user"
+                        placeholder="Nick name"
                         value={username}
                         className="outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
                       />
@@ -97,65 +105,113 @@ class Register extends Component {
                         <i className="fas fa-user-circle fill-current text-green-400"></i>
                       </span>
                     </div>
+                    <small className="font-light text-sm">
+                      (Whithout spaces and special characters)
+                    </small>
                   </div>
 
                   <div className="mt-3">
                     <label
                       className="font-bold text-green-500 text-sm"
-                      htmlFor="password"
+                      htmlFor="name"
                     >
-                      Password
+                      name
                     </label>
                     <div className="flex w-full border border-4 border-gray-300 rounded-md p-1 focus-within:ring focus-within:ring-green-200 focus-within:border-none">
                       <input
                         onChange={this.updateState}
-                        type={`${this.state.showPassword ? "text" : "password"}`}
-                        name="password"
-                        placeholder="Enter your password"
-                        value={password}
+                        type="text"
+                        name="name"
+                        placeholder="Name of user"
+                        value={name}
                         className="outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
                       />
-                      <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
-                        <i
-                          onClick={this.handleIconPassword}
-                          role="button"
-                          className={`fas fa-sm ${
-                            this.state.showPassword ? "fa-eye-slash" : "fa-eye"
-                          } fill-current text-green-400`}
-                        ></i>
-                      </span>
+                    </div>
+                    <small className="font-light text-sm">
+                      (Add the full name of the user)
+                    </small>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="mt-3 col-span-1">
+                      <label
+                        className="font-bold text-green-500 text-sm"
+                        htmlFor="password"
+                      >
+                        Password
+                      </label>
+                      <div className="flex w-full border border-4 border-gray-300 rounded-md p-1 focus-within:ring focus-within:ring-green-200 focus-within:border-none">
+                        <input
+                          onChange={this.updateState}
+                          type={`${this.state.showPassword ? "text" : "password"}`}
+                          name="password"
+                          placeholder="Enter your password"
+                          value={password}
+                          className="outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
+                        />
+                        <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
+                          <i
+                            onClick={this.handleIconPassword}
+                            role="button"
+                            className={`fas fa-sm ${
+                              this.state.showPassword ? "fa-eye-slash" : "fa-eye"
+                            } fill-current text-green-400`}
+                          ></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 col-span-1">
+                      <label
+                        className="font-bold text-green-500 text-sm"
+                        htmlFor="repeatedPassword"
+                      >
+                        Repeat Password
+                      </label>
+                      <div className="flex w-full border border-4 border-gray-300 rounded-md p-1 focus-within:ring focus-within:ring-green-200 focus-within:border-none">
+                        <input
+                          onChange={this.updateState}
+                          type={`${
+                            this.state.showRepeatedPassword ? "text" : "password"
+                          }`}
+                          name="repeatedPassword"
+                          placeholder="Enter your password"
+                          value={repeatedPassword}
+                          className="outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
+                        />
+                        <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
+                          <i
+                            onClick={this.handleIconRepeatedPassword}
+                            role="button"
+                            className={`fas fa-sm ${
+                              this.state.showRepeatedPassword
+                                ? "fa-eye-slash"
+                                : "fa-eye"
+                            } fill-current text-green-400`}
+                          ></i>
+                        </span>
+                      </div>
                     </div>
                   </div>
 
                   <div className="mt-3">
                     <label
                       className="font-bold text-green-500 text-sm"
-                      htmlFor="repeatedPassword"
+                      htmlFor="role"
                     >
-                      Repeat Password
+                      Role:
                     </label>
                     <div className="flex w-full border border-4 border-gray-300 rounded-md p-1 focus-within:ring focus-within:ring-green-200 focus-within:border-none">
-                      <input
+                      <select
+                        value={role}
+                        name="role"
                         onChange={this.updateState}
-                        type={`${
-                          this.state.showRepeatedPassword ? "text" : "password"
-                        }`}
-                        name="repeatedPassword"
-                        placeholder="Enter your password"
-                        value={repeatedPassword}
-                        className="outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
-                      />
-                      <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
-                        <i
-                          onClick={this.handleIconRepeatedPassword}
-                          role="button"
-                          className={`fas fa-sm ${
-                            this.state.showRepeatedPassword
-                              ? "fa-eye-slash"
-                              : "fa-eye"
-                          } fill-current text-green-400`}
-                        ></i>
-                      </span>
+                        className="w-full outline-none py-1 pl-3 w-full placeholder-gray-500 placeholder-opacity-50"
+                      >
+                        <option value="">Select an option...</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="SELLER">SELLER</option>
+                      </select>
                     </div>
                   </div>
 

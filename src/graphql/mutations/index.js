@@ -79,8 +79,8 @@ export const UPDATE_ORDER_STATUS = gql`
 `;
 
 export const CREATE_USER = gql`
-  mutation($username: String!, $password: String!) {
-    createUser(username: $username, password: $password)
+  mutation($username: String!, $name: String!, $role: String!, $password: String!) {
+    createUser(username: $username, name: $name, role: $role, password: $password)
   }
 `;
 

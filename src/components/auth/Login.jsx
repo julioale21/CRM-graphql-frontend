@@ -52,7 +52,6 @@ class Login extends Component {
           this.props.history.push("/panel");
         }, 3000);
       })
-      // eslint-disable-next-line no-console
       .catch((error) => {
         this.setState({ error });
         setTimeout(() => {
