@@ -23,16 +23,26 @@ import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
   const { getUser } = session;
-  const message = getUser ? `Bienbenido: ${getUser.name}` : <Redirect to="/login" />;
+  const message = getUser ? `Bienbenido: ${getUser.name}` : "";
+  const toLogin = !getUser ? <Redirect to="/login" /> : null;
   return (
     <Router>
       <Fragment>
+        {toLogin}
         <Header session={session} />
         <div className="sm:container sm:mx-auto w-full h-screen">
           <p className="text-right mt-3 mr-3">{message}</p>
           <Switch>
-            <Route exact path="/" component={CustomersList} />
-            <Route exact path="/customers/new" component={NewCustomer} />
+            <Route
+              exact
+              path="/"
+              render={() => <CustomersList session={session} />}
+            />
+            <Route
+              exact
+              path="/customers/new"
+              render={() => <NewCustomer session={session} />}
+            />
             <Route exact path="/customers/edit/:id" component={EditCustomer} />
 
             <Route exact path="/products" component={ProductsList} />

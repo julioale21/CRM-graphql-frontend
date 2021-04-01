@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component, Fragment } from "react";
 import { Query, Mutation } from "react-apollo";
 import { GET_ALL_CUSTOMERS_QUERY } from "../../graphql/queries";
@@ -42,8 +41,15 @@ class Customers extends Component {
     const {
       alert: { show, message },
     } = this.state;
-
     const alert = show ? <Success message={message} /> : "";
+
+    let id;
+    const { role } = this.props.session.getUser;
+    if (role === "SELLER") {
+      id = this.props.session.getUser.id;
+    } else {
+      id = "";
+    }
 
     return (
       <Query
@@ -52,6 +58,7 @@ class Customers extends Component {
         variables={{
           limit: this.limit,
           offset: this.state.paginate.offset,
+          seller: id,
         }}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
@@ -135,7 +142,7 @@ class Customers extends Component {
                           )}
                         </Mutation>
                         <Link
-                          to={`/customer/edit/${customer.id}`}
+                          to={`/customers/edit/${customer.id}`}
                           className="btn flex items-center border border-green-400 text-green-400 text-xs sm:text-sm hover:bg-green-100  hover:text-green-500"
                         >
                           Edit

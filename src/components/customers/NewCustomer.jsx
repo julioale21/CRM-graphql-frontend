@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import React, { Fragment, Component } from "react";
 import { CREATE_CUSTOMER } from "../../graphql/mutations";
 import { Mutation } from "react-apollo";
+import { withRouter } from "react-router-dom";
 class NewCustomer extends Component {
   state = {
     customer: {
@@ -42,11 +42,14 @@ class NewCustomer extends Component {
 
   render() {
     const { error } = this.state;
+    const sellerId = this.props.session.getUser.id;
+
     let response = error ? (
       <p className="bg-red-200 text-center text-white">All field are required</p>
     ) : (
       ""
     );
+
     return (
       <Fragment>
         <h2 className="text-center uppercase font-bold text-2xl">New Customer</h2>
@@ -88,6 +91,7 @@ class NewCustomer extends Component {
                     company,
                     emails,
                     type,
+                    seller: sellerId,
                   };
 
                   createCustomer({
@@ -226,4 +230,4 @@ class NewCustomer extends Component {
   }
 }
 
-export default NewCustomer;
+export default withRouter(NewCustomer);

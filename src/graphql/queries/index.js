@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_ALL_CUSTOMERS_QUERY = gql`
-  query($limit: Int, $offset: Int) {
-    getCustomers(limit: $limit, offset: $offset) {
+  query($limit: Int, $offset: Int, $seller: String) {
+    getCustomers(limit: $limit, offset: $offset, seller: $seller) {
       id
       name
       lastName
@@ -12,7 +12,7 @@ export const GET_ALL_CUSTOMERS_QUERY = gql`
         email
       }
     }
-    totalCustomers
+    totalCustomers(seller: $seller)
   }
 `;
 

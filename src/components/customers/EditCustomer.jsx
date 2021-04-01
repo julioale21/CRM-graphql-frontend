@@ -14,7 +14,6 @@ class EditCustomer extends Component {
           {({ loading, error, data, refetch }) => {
             if (loading) return "Cargando...";
             if (error) return `Error! ${error.message}`;
-            console.log(data);
             return <CustomerForm customer={data.getCustomer} refetch={refetch} />;
           }}
         </Query>
