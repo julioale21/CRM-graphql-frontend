@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 
 class Pager extends Component {
@@ -23,7 +24,7 @@ class Pager extends Component {
         ""
       );
     const btnNext =
-      page !== pages ? (
+      page !== pages && pages > 1 ? (
         <button
           onClick={this.props.nextPage}
           type="button"
