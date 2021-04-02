@@ -18,52 +18,78 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
   const { getUser } = session;
   const message = getUser ? `Bienbenido: ${getUser.name}` : "";
-  const toLogin = !getUser ? <Redirect to="/login" /> : null;
 
   return (
     <Router>
       <Fragment>
         <Header session={session} />
         <div className="sm:container sm:mx-auto w-full h-screen">
-          <p className="text-right mt-3 mr-3">
-            {message}
-            {toLogin}
-          </p>
+          <p className="text-right mt-3 mr-3">{message}</p>
           <Switch>
-            <Route
+            <ProtectedRoute
               exact
               path="/customers"
-              render={() => <CustomersList session={session} />}
+              session={session}
+              user={getUser}
+              component={CustomersList}
             />
-            <Route
+            <ProtectedRoute
               exact
               path="/customers/new"
-              render={() => <NewCustomer session={session} />}
+              session={session}
+              user={getUser}
+              component={NewCustomer}
             />
-            <Route exact path="/customers/edit/:id" component={EditCustomer} />
-
-            <Route exact path="/products" component={ProductsList} />
-            <Route exact path="/products/new" component={NewProduct} />
-            <Route exact path="/products/edit/:id" component={EditProduct} />
-
-            <Route
+            <ProtectedRoute
+              exact
+              path="/customers/edit/:id"
+              user={getUser}
+              component={EditCustomer}
+            />
+            <ProtectedRoute
+              exact
+              path="/products"
+              user={getUser}
+              component={ProductsList}
+            />
+            <ProtectedRoute
+              exact
+              path="/products/new"
+              user={getUser}
+              component={NewProduct}
+            />
+            <ProtectedRoute
+              exact
+              path="/products/edit/:id"
+              user={getUser}
+              component={EditProduct}
+            />
+            <ProtectedRoute
               exact
               path="/orders/new/:customerId"
-              render={() => <NewOrder session={session} />}
+              user={getUser}
+              session={session}
+              component={NewOrder}
             />
-            <Route exact path="/panel" component={Panel} />
-            <Route exact path="/orders/:customerId" component={CustomerOrdersList} />
-
-            <Route
+            <ProtectedRoute exact path="/panel" user={getUser} component={Panel} />
+            <ProtectedRoute
+              exact
+              path="/orders/:customerId"
+              user={getUser}
+              component={CustomerOrdersList}
+            />
+            <ProtectedRoute
               exact
               path="/register"
-              render={() => <Register session={session} />}
+              user={getUser}
+              session={session}
+              component={Register}
             />
             <Route exact path="/login" render={() => <Login refetch={refetch} />} />
           </Switch>
