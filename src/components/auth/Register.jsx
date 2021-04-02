@@ -68,7 +68,7 @@ class Register extends Component {
     const { username, name, role, password, repeatedPassword } = this.state;
     const userRole = this.props.session.getUser.role;
 
-    const redirect = userRole !== "ADMIN" ? <Redirect to="/" /> : "";
+    const redirect = userRole !== "ADMIN" ? <Redirect to="/customers" /> : "";
     return (
       <Fragment>
         {redirect}

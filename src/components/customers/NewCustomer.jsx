@@ -57,7 +57,7 @@ class NewCustomer extends Component {
         <div className="sm:grid sm:grid-cols-5">
           <Mutation
             mutation={CREATE_CUSTOMER}
-            onCompleted={() => this.props.history.push("/")}
+            onCompleted={() => this.props.history.push("/customers")}
           >
             {(createCustomer) => (
               <form

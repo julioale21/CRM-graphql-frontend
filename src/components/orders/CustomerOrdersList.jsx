@@ -3,10 +3,10 @@ import { Query } from "react-apollo";
 import { GET_ORDERS_BY_CUSTOMER } from "../../graphql/queries";
 import Spinner from "../Spinner";
 import Order from "./Order";
+import { withRouter } from "react-router-dom";
 
 const CustomerOrdersList = (props) => {
   const customerId = props.match.params.customerId;
-
   return (
     <Fragment>
       <h2 className="text-center text-2xl font-bold uppercase p-2">
@@ -38,4 +38,4 @@ const CustomerOrdersList = (props) => {
   );
 };
 
-export default CustomerOrdersList;
+export default withRouter(CustomerOrdersList);
