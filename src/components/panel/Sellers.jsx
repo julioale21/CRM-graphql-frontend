@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { GET_TOP_CUSTOMERS } from "../../graphql/queries";
+import { GET_TOP_SELLERS } from "../../graphql/queries";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
-class Customers extends Component {
+class Sellers extends Component {
   state = {
     graphicWidth: 400,
     graphicHeight: 300,
@@ -36,16 +36,16 @@ class Customers extends Component {
 
   render() {
     return (
-      <Query query={GET_TOP_CUSTOMERS} pollInterval={500}>
+      <Query query={GET_TOP_SELLERS} pollInterval={500}>
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return "Loading...";
           if (error) return `Error: ${error.message}`;
 
-          const topCustomersGraphic = [];
+          const topSellersGraphic = [];
 
-          data.topCustomers.map((order, index) => {
-            topCustomersGraphic[index] = {
-              ...order.customer[0],
+          data.topSellers.map((order, index) => {
+            topSellersGraphic[index] = {
+              ...order.seller[0],
               total: order.total,
             };
           });
@@ -56,7 +56,7 @@ class Customers extends Component {
                 <BarChart
                   width={this.state.graphicWidth}
                   height={this.state.graphicHeight}
-                  data={topCustomersGraphic}
+                  data={topSellersGraphic}
                   margin={{
                     top: 5,
                     right: 30,
@@ -68,7 +68,7 @@ class Customers extends Component {
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip />
-                  <Bar dataKey="total" fill="#8884d8" />
+                  <Bar dataKey="total" fill="#10a98b" />
                 </BarChart>
               </div>
             </div>
@@ -79,4 +79,4 @@ class Customers extends Component {
   }
 }
 
-export default Customers;
+export default Sellers;

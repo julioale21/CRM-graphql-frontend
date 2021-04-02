@@ -81,6 +81,17 @@ export const GET_TOP_CUSTOMERS = gql`
   }
 `;
 
+export const GET_TOP_SELLERS = gql`
+  query {
+    topSellers {
+      total
+      seller {
+        name
+      }
+    }
+  }
+`;
+
 export const CURRENT_USER = gql`
   query {
     getUser {
