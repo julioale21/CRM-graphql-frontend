@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 
-const ProductoSummary = ({ quantity, product, color }) => {
+const ProductoSummary = ({ quantity, product }) => {
   return (
     <Fragment>
-      <div className={`border ${color} rounded mb-4 p-4 text-sm`}>
+      <div className="border-b-2 border-gray-100 rounded mb-4 p-4 text-sm">
         <p className="font-bold">
           Product:
           <span className="ml-3 font-light">{product.name}</span>

@@ -42,7 +42,7 @@ const Order = (props) => {
 
   return (
     <div
-      className={`col-span-12 md:col-span-6 lg:col-span-4 gap-4  border-4 ${appearance} rounded shadow p-4`}
+      className={`col-span-12 md:col-span-6 lg:col-span-4 gap-4 border-2 ${appearance} rounded shadow p-4 mb-6`}
     >
       <div>
         <div>
@@ -72,11 +72,9 @@ const Order = (props) => {
             Order Date:
             <span className="font-light ml-2">{date.toLocaleString("es-AR")}</span>
           </p>
-          <p className="font-bold">
-            Total: <span className="font-light ml-2">$ {order.total}</span>
-          </p>
-
-          <h3 className="text-center my-4 text-xl font-medium">Order items</h3>
+          <h3 className="text-center my-4 text-xl font-bold bg-gray-300">
+            Order items
+          </h3>
           {order.order.map((product, index) => {
             return (
               <Query
@@ -93,13 +91,17 @@ const Order = (props) => {
                       product={data.getProduct}
                       quantity={product.quantity}
                       key={product.id}
-                      color={appearance}
                     />
                   );
                 }}
               </Query>
             );
           })}
+
+          <div className="flex items-center justify-end">
+            <p className="font-bold bg-yellow-300 font-white mr-1 p-1">Total:</p>
+            <p className="font-light text-md">$ {order.total}</p>
+          </div>
         </div>
       </div>
     </div>
