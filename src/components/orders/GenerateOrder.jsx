@@ -9,7 +9,10 @@ const validateOrder = (props) => {
 
 const GenerateOrder = (props) => {
   return (
-    <Mutation mutation={CREATE_ORDER} onCompleted={() => props.history.push("/")}>
+    <Mutation
+      mutation={CREATE_ORDER}
+      onCompleted={() => props.history.push("/customers")}
+    >
       {(createOrder) => (
         <button
           type="button"
@@ -20,11 +23,11 @@ const GenerateOrder = (props) => {
             const productsInput = props.products.map(
               ({ name, price, stock, ...object }) => object
             );
-            // eslint-disable-next-line no-console
             const input = {
               order: productsInput,
               total: props.total,
               customer: props.customerId,
+              seller: props.sellerId,
             };
 
             createOrder({

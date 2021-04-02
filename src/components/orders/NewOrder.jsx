@@ -4,11 +4,13 @@ import { Query } from "react-apollo";
 import { GET_ALL_PRODUCTS_QUERY } from "../../graphql/queries";
 import Spinner from "../Spinner";
 import OrderContent from "./OrderContent";
+import { withRouter } from "react-router-dom";
 
 class NewOrder extends Component {
   state = {};
   render() {
     const { customerId } = this.props.match.params;
+    const sellerId = this.props.session.getUser.id;
 
     return (
       <Fragment>
@@ -30,6 +32,7 @@ class NewOrder extends Component {
                   <OrderContent
                     products={data.getProducts}
                     customerId={customerId}
+                    sellerId={sellerId}
                   />
                 );
               }}
@@ -41,4 +44,4 @@ class NewOrder extends Component {
   }
 }
 
-export default NewOrder;
+export default withRouter(NewOrder);

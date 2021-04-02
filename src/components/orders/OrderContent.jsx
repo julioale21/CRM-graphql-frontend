@@ -97,6 +97,7 @@ class OrderContent extends Component {
           products={this.state.products}
           total={this.state.total}
           customerId={this.props.customerId}
+          sellerId={this.props.sellerId}
         />
       </Fragment>
     );

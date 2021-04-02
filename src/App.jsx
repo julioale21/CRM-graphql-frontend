@@ -25,17 +25,20 @@ const App = ({ refetch, session }) => {
   const { getUser } = session;
   const message = getUser ? `Bienbenido: ${getUser.name}` : "";
   const toLogin = !getUser ? <Redirect to="/login" /> : null;
+
   return (
     <Router>
       <Fragment>
-        {toLogin}
         <Header session={session} />
         <div className="sm:container sm:mx-auto w-full h-screen">
-          <p className="text-right mt-3 mr-3">{message}</p>
+          <p className="text-right mt-3 mr-3">
+            {message}
+            {toLogin}
+          </p>
           <Switch>
             <Route
               exact
-              path="/"
+              path="/customers"
               render={() => <CustomersList session={session} />}
             />
             <Route
@@ -49,7 +52,11 @@ const App = ({ refetch, session }) => {
             <Route exact path="/products/new" component={NewProduct} />
             <Route exact path="/products/edit/:id" component={EditProduct} />
 
-            <Route exact path="/orders/new/:customerId" component={NewOrder} />
+            <Route
+              exact
+              path="/orders/new/:customerId"
+              render={() => <NewOrder session={session} />}
+            />
             <Route exact path="/panel" component={Panel} />
             <Route exact path="/orders/:customerId" component={CustomerOrdersList} />
 
