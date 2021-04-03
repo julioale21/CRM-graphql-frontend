@@ -6,7 +6,7 @@ import { ApolloProvider } from "react-apollo";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://damp-brook-19716.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include",
   },

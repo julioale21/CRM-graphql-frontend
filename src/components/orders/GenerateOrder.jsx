@@ -9,10 +9,7 @@ const validateOrder = (props) => {
 
 const GenerateOrder = (props) => {
   return (
-    <Mutation
-      mutation={CREATE_ORDER}
-      onCompleted={() => props.history.push("/customers")}
-    >
+    <Mutation mutation={CREATE_ORDER} onCompleted={() => props.history.push("/")}>
       {(createOrder) => (
         <button
           type="button"

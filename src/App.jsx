@@ -16,6 +16,7 @@ import CustomerOrdersList from "./components/orders/CustomerOrdersList";
 import Panel from "./components/panel";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import NotFoundPage from "./components/NotFoundPage";
 
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -34,7 +35,7 @@ const App = ({ refetch, session }) => {
           <Switch>
             <ProtectedRoute
               exact
-              path="/customers"
+              path="/"
               session={session}
               user={getUser}
               component={CustomersList}
@@ -92,6 +93,9 @@ const App = ({ refetch, session }) => {
               component={Register}
             />
             <Route exact path="/login" render={() => <Login refetch={refetch} />} />
+            <Route exact path="*">
+              <NotFoundPage />
+            </Route>
           </Switch>
         </div>
       </Fragment>

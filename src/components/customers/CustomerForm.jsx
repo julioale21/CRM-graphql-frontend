@@ -80,10 +80,6 @@ class CustomerForm extends Component {
                   emails,
                   type,
                 };
-
-                // eslint-disable-next-line no-console
-                console.log(input);
-
                 updateCustomer({
                   variables: { input },
                 });
