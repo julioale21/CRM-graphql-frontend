@@ -35,7 +35,7 @@ const App = ({ refetch, session }) => {
           <Switch>
             <ProtectedRoute
               exact
-              path="/"
+              path="/customers"
               session={session}
               user={getUser}
               component={CustomersList}
