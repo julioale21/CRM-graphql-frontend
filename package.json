@@ -31,7 +31,8 @@
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "release": "release-it"
   },
   "eslintConfig": {
     "extends": [
@@ -52,12 +53,14 @@
     ]
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.1",
     "autoprefixer": "^8.0.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "postcss-cli": "^8.3.1",
     "prettier": "^2.2.1",
+    "release-it": "^14.5.1",
     "tailwindcss": "^2.0.3"
   }
 }
