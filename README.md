@@ -52,7 +52,7 @@ The project was built using the next libraries and frameworks among others.
 The folders and files are structured as follow:
 
    
-    ├── public               # Archivos estáticos
+    ├── public               # Static files
     ├── src
         ├── assets          # Contains css files and utilities files 
         ├── components       
