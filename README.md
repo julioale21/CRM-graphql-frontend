@@ -12,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">CRM Reactjs App</h3>
@@ -51,8 +51,8 @@ The project was built using the next libraries and frameworks among others.
 
 The folders and files are structured as follow:
 
-    .
-    ├── public               # Archivos estáticos
+   
+    ├── public               # Static files
     ├── src
         ├── assets          # Contains css files and utilities files 
         ├── components       
@@ -84,11 +84,6 @@ You need to have installed:
 npm
 ```
 
-If you don't have it, you can install it by running command
-```sh
-npm install npm@latest -g
-```
-
 ### Installation
 
 1. Clone the repo
@@ -117,11 +112,15 @@ npm install npm@latest -g
 
 ## Contact
 
-Your Name - [@julioale21](https://twitter.com/julioale21) - julioale04031981@gmail.com
+[@julioale21](https://twitter.com/julioale21) - julioale04031981@gmail.com
 
-Project Link: [https://github.com/julioale21/CRM-graphql-frontend](https://github.com/julioale21/CRM-graphql-frontend)
+[https://github.com/julioale21/CRM-graphql-frontend](https://github.com/julioale21/CRM-graphql-frontend)
 
 ## DEMO
 
 [https://crm-graphql-frontend.vercel.app/](https://crm-graphql-frontend.vercel.app/)
+
+*user: admin
+
+*password: admin
 
