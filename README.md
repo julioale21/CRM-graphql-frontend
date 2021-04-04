@@ -112,9 +112,9 @@ npm
 
 ## Contact
 
-Your Name - [@julioale21](https://twitter.com/julioale21) - julioale04031981@gmail.com
+[@julioale21](https://twitter.com/julioale21) - julioale04031981@gmail.com
 
-Project Link: [https://github.com/julioale21/CRM-graphql-frontend](https://github.com/julioale21/CRM-graphql-frontend)
+[https://github.com/julioale21/CRM-graphql-frontend](https://github.com/julioale21/CRM-graphql-frontend)
 
 ## DEMO
 
