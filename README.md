@@ -1,6 +1,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/julioale21/CRM-graphql-frontend)
 ![GitHub language count](https://img.shields.io/github/languages/count/julioale21/CRM-graphql-frontend)
 ![GitHub top language](https://img.shields.io/github/languages/top/julioale21/CRM-graphql-frontend)
+![GitHub top language](https://img.shields.io/github/languages/top/julioale21/CRM-graphql-frontend)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/julioale21/CRM-graphql-frontend)
 ![GitHub contributors](https://img.shields.io/github/contributors/julioale21/CRM-graphql-frontend?color=blue)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/julioale21/CRM-graphql-frontend/master?color=blue)
