@@ -7,6 +7,7 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/julioale21/CRM-graphql-frontend/master?color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/julioale21/CRM-graphql-frontend)
 
+### [📖 Go to CHANGELOG.md to view the changes registry](CHANGELOG.md)
 
 <br />
 <p align="center">
@@ -46,7 +47,29 @@ The project was built using the next libraries and frameworks among others.
 * [Sweet Alert 2](https://sweetalert2.github.io/)
 * [Release-it](https://github.com/release-it/release-it)
 
+## Project structure
 
+The folders and files are structured as follow:
+
+    .
+    ├── public               # Archivos estáticos
+    ├── src
+        ├── assets          # Contains css files and utilities files 
+        ├── components       
+          ├── alerts        # Common alert components
+          ├── auth          # Login and register components
+          ├── customers     # Components to view, create and edit customers
+          ├── layout        # Global components
+          ├── orders        # Components to view, create and edit orders
+          ├── panel         # Components to show statistics
+          ├── products      # Components to view, create and edit products
+        Others common components
+        ├── graphql            
+            ├── queries     # All graphql queries of the project
+            ├── mutations   # All graphql mutations of the project
+    ├── CHANGELOG.md         # Document project changes in `Keep a changelog` format.
+    └── README.md            # The first page that user will see when he visit the repository.
+    
 
 <!-- GETTING STARTED -->
 ## Getting Started
