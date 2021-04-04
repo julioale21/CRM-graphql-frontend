@@ -84,11 +84,6 @@ You need to have installed:
 npm
 ```
 
-If you don't have it, you can install it by running command
-```sh
-npm install npm@latest -g
-```
-
 ### Installation
 
 1. Clone the repo
